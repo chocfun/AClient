@@ -1,1 +1,1 @@
-include ':app', ':baselib', ':imageloadercomponent'
+include ':app', ':baselib', ':ImageModule'

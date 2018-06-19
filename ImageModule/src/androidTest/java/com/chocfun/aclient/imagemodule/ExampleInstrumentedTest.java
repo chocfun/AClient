@@ -1,4 +1,4 @@
-package com.chocfun.aclient.imageloadercomponent;
+package com.chocfun.aclient.imagemodule;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

@@ -1,6 +1,6 @@
-package com.chocfun.aclient.imageloadercomponent.ui;
+package com.chocfun.aclient.imagemodule.ui;
 
-import com.chocfun.aclient.imageloadercomponent.R;
+import com.chocfun.aclient.imagemodule.R;
 import com.chocfun.baselib.ui.BaseActivity;
 
 public class ImageActivity extends BaseActivity {

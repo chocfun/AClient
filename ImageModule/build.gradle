@@ -3,6 +3,7 @@ if (isRunAlone.toBoolean()) {
 } else {
     apply plugin: 'com.android.library'
 }
+apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -26,6 +27,19 @@ android {
         }
     }
 
+    if (isRunAlone.toBoolean()) {
+        sourceSets {
+            main {
+                manifest.srcFile 'src/main/runalone/AndroidManifest.xml'
+                java.srcDirs = ['src/main/java', 'src/main/runalone/java']
+                res.srcDirs = ['src/main/res', 'src/main/runalone/res']
+                assets.srcDirs = ['src/main/assets', 'src/main/runalone/assets']
+                jniLibs.srcDirs = ['src/main/jniLibs', 'src/main/runalone/jniLibs']
+            }
+        }
+    }
+
+    resourcePrefix 'img_'
 }
 
 dependencies {
@@ -35,5 +49,8 @@ dependencies {
     testImplementation "junit:junit:$rootProject.junitVersion"
     androidTestImplementation "com.android.support.test:runner:$rootProject.testRunner"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.testEspressoCore"
+
+    annotationProcessor rootProject.ext.dependencies.libButterKnifeCompiler
+
     implementation project(':baselib')
 }

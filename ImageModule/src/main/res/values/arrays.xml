@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="img_src_list">
+        <item>https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1529477808193&amp;di=16d56860966e9b671160672ab20fa459&amp;imgtype=0&amp;src=http%3A%2F%2Fimgq.duitang.com%2Fuploads%2Fitem%2F201402%2F13%2F20140213174309_HJWyf.thumb.700_0.jpeg</item>
+        <item>https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1529477808192&amp;di=b71abfd2e02cb2710c890de8f27760fe&amp;imgtype=0&amp;src=http%3A%2F%2Fpic34.photophoto.cn%2F20150314%2F0005018316925529_b.jpg</item>
+        <item>https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1529477876613&amp;di=09224d608e5e80c6b446a0b2a2f32264&amp;imgtype=0&amp;src=http%3A%2F%2Fwww.xp71.com%2Fuploads%2Fallimg%2F150114%2F1-15011410330Y20.jpg</item>
+    </string-array>
+    <string-array name="img_src_names">
+        <item>图片1</item>
+        <item>图片2</item>
+        <item>图片3</item>
+    </string-array>
+    <string-array name="img_types">
+        <item>正常</item>
+        <item>圆角</item>
+        <item>圆形</item>
+    </string-array>
+</resources>

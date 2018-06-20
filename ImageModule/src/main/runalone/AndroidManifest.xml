@@ -2,7 +2,8 @@
     package="com.chocfun.aclient.imagemodule" >
 
     <application
-        android:allowBackup="true">
+        android:allowBackup="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         <activity android:name=".ui.ImageActivity"
             android:screenOrientation="portrait">

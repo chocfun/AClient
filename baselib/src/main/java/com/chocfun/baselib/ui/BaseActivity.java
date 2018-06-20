@@ -19,6 +19,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 在这里设置Activity的View对应的layout文件
      */
     public abstract int getLayoutId();
+    public abstract void initData();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

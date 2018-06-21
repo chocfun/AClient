@@ -19,6 +19,10 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 在这里设置Activity的View对应的layout文件
      */
     public abstract int getLayoutId();
+
+    /**
+     * 设置layout id 后的初始化工作在这里进行
+     */
     public abstract void initData();
 
     @Override
@@ -32,6 +36,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 
                 mUnbinder = ButterKnife.bind(this);
             }
+
+            initData();
         } catch (Exception e) {
             e.printStackTrace();
         }

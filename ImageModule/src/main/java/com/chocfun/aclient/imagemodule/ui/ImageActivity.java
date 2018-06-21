@@ -5,6 +5,7 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 
 import com.chocfun.aclient.imagemodule.R;
+import com.chocfun.aclient.imagemodule.R2;
 import com.chocfun.baselib.ui.BaseActivity;
 
 import butterknife.BindArray;
@@ -12,14 +13,14 @@ import butterknife.BindView;
 
 public class ImageActivity extends BaseActivity {
 
-    @BindView(R.id.src_spinner)
+    @BindView(R2.id.src_spinner)
     Spinner mSrcSpinner;
-    @BindView(R.id.type_spinner)
+    @BindView(R2.id.type_spinner)
     Spinner mTypeSpinner;
-    @BindView(R.id.size_seekbar)
+    @BindView(R2.id.size_seekbar)
     SeekBar mSizeSeekBar;
 
-    @BindArray(R.array.img_src_list)
+    @BindArray(R2.array.img_src_list)
     String[] mImgs;
 
     private String mCurrentImg;

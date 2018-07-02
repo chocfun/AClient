@@ -1,1 +1,1 @@
-include ':app', ':baselib', ':ImageModule', ':ImageModuleApp'
+include ':app', ':baselib', ':ImageModule', ':ImageModuleApp', ':logtestapp'

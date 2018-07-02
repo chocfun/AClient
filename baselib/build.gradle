@@ -32,5 +32,17 @@ dependencies {
     androidTestImplementation "com.android.support.test:runner:$rootProject.testRunner"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.testEspressoCore"
 
-    api rootProject.ext.dependencies.libButterKnife
+    implementation (rootProject.ext.dependencies.libLogger)
+
+    // ButterKnife
+    api(rootProject.ext.dependencies.libButterKnife) {
+        exclude module: 'support-annotations'
+    }
+    // Glide
+    api(rootProject.ext.dependencies.libGlide) {
+        exclude module: 'support-v4'
+    }
+    annotationProcessor(rootProject.ext.dependencies.libGlideProcessor) {
+        exclude module: 'jsr305'
+    }
 }

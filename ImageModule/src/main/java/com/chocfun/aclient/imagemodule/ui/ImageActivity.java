@@ -1,11 +1,16 @@
 package com.chocfun.aclient.imagemodule.ui;
+
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 
 import com.chocfun.aclient.imagemodule.R;
 import com.chocfun.aclient.imagemodule.R2;
+import com.chocfun.baselib.image.GlideImageConfig;
+import com.chocfun.baselib.image.ImageLoaderUtil;
+import com.chocfun.baselib.log.LogHelper;
 import com.chocfun.baselib.ui.BaseActivity;
 
 import butterknife.BindArray;
@@ -19,6 +24,8 @@ public class ImageActivity extends BaseActivity {
     Spinner mTypeSpinner;
     @BindView(R2.id.size_seekbar)
     SeekBar mSizeSeekBar;
+    @BindView(R2.id.image_view)
+    ImageView mImageView;
 
     @BindArray(R2.array.img_src_list)
     String[] mImgs;
@@ -32,20 +39,26 @@ public class ImageActivity extends BaseActivity {
 
     @Override
     public void initData() {
-        mSrcSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mSrcSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position >= 0 && position < mImgs.length) {
                     mCurrentImg = mImgs[position];
+
+                    LogHelper.i("当前图片 : " + mCurrentImg);
+
+                    resetImageView();
                 }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                LogHelper.d("没有选择图片");
             }
         });
 
-        mTypeSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        mTypeSpinner.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
 
-            }
         });
 
         mSizeSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -64,5 +77,13 @@ public class ImageActivity extends BaseActivity {
 
             }
         });
+    }
+
+    private void resetImageView() {
+        ImageLoaderUtil.getIntance().loadImage(this,
+                GlideImageConfig.builder()
+                        .imageView(mImageView)
+                        .url(mCurrentImg)
+                        .build());
     }
 }

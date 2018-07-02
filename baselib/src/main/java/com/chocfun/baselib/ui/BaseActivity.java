@@ -34,6 +34,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             if (layoutId > 0) {
                 setContentView(layoutId);
 
+                // ButterKnife 绑定
                 mUnbinder = ButterKnife.bind(this);
             }
 
@@ -47,6 +48,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
 
+        // ButterKnife 解除绑定
         if (null != mUnbinder) {
             mUnbinder.unbind();
         }

@@ -17,7 +17,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initData() {
-        LogHelper.init();
+//        LogHelper.init("ImageModule");
         startActivity(new Intent(this, ImageActivity.class));
         finish();
     }

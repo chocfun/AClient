@@ -57,14 +57,10 @@ public class ImageActivity extends BaseActivity {
             }
         });
 
-        mTypeSpinner.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
-
-        });
-
         mSizeSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
+                LogHelper.d("onProgressChanged : " + progress);
             }
 
             @Override

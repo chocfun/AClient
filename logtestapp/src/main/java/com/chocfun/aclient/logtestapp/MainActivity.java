@@ -1,13 +1,52 @@
 package com.chocfun.aclient.logtestapp;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.widget.EditText;
 
-public class MainActivity extends AppCompatActivity {
+import com.chocfun.baselib.log.LogHelper;
+import com.chocfun.baselib.ui.BaseActivity;
+
+import butterknife.BindView;
+import butterknife.OnClick;
+
+public class MainActivity extends BaseActivity {
+
+    @BindView(R.id.edit_text)
+    EditText mEditText;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public int getLayoutId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    public void initData() {
+        mEditText.setText("测试日志打印");
+
+        LogHelper.t("测试TAG").i("测试；啊交水电费");
+    }
+
+    @OnClick(R.id.v_btn)
+    public void v() {
+        LogHelper.v(mEditText.getText().toString());
+    }
+
+    @OnClick(R.id.d_btn)
+    public void d() {
+        LogHelper.d(mEditText.getText().toString());
+    }
+
+    @OnClick(R.id.i_btn)
+    public void i() {
+        LogHelper.i(mEditText.getText().toString());
+    }
+
+    @OnClick(R.id.w_btn)
+    public void w() {
+        LogHelper.w(mEditText.getText().toString());
+    }
+
+    @OnClick(R.id.e_btn)
+    public void e() {
+        LogHelper.e(mEditText.getText().toString());
     }
 }

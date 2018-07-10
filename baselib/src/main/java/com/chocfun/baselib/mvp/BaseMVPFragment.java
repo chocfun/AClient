@@ -9,7 +9,7 @@ import com.chocfun.baselib.util.PreconditionUtil;
 import io.reactivex.ObservableTransformer;
 
 @SuppressWarnings("unchecked")
-public abstract class BaseMVPActivity<P extends IBasePresenter> extends BaseActivity implements IBaseView {
+public abstract class BaseMVPFragment<P extends IBasePresenter> extends BaseFragment implements IBaseView {
     protected P mPresenter;
 
     protected abstract P createPresenter();
@@ -26,7 +26,7 @@ public abstract class BaseMVPActivity<P extends IBasePresenter> extends BaseActi
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         mPresenter.detach();
 
         super.onDestroy();

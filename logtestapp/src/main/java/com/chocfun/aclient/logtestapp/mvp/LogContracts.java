@@ -10,5 +10,7 @@ public interface LogContracts {
 
     interface Presenter extends IBasePresenter<View> {
         void doSomething();
+        void doUntilStop();
+        void doUntilDestroy();
     }
 }

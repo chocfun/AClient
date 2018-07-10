@@ -1,5 +1,7 @@
 package com.chocfun.aclient.httpapp;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -35,12 +37,12 @@ public class Retrofit2Activity extends BaseActivity {
     private ApiService mApiService;
 
     @Override
-    public int getLayoutId() {
+    public int initView() {
         return R.layout.activity_retrofit2;
     }
 
     @Override
-    public void initData() {
+    public void initBaseData(@Nullable Bundle savedInstanceState) {
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(getUrl())
                 .build();

@@ -1,8 +1,13 @@
 package com.chocfun.baselib.mvp;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.chocfun.baselib.rxlifecycle.RxLifecycleEvent;
 import com.chocfun.baselib.rxlifecycle.RxLifecycleUtil;
@@ -13,77 +18,83 @@ import io.reactivex.ObservableTransformer;
 import io.reactivex.subjects.BehaviorSubject;
 
 /**
- * 封装Activity基类
+ * 封装Fragment基类
  *
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseFragment extends Fragment {
 
     // ButterKnife解除绑定
     private Unbinder mUnbinder;
     private final BehaviorSubject<RxLifecycleEvent> mBehaviorSubject = BehaviorSubject.create();
 
-    /**
-     * 在这里设置Activity对应的layout文件
-     */
-    public abstract int initView();
-
-    /**
-     * 设置layout id 后的初始化工作在这里进行
-     */
-    public abstract void initBaseData(@Nullable Bundle savedInstanceState);
+    protected abstract int initView();
+    protected abstract void initBaseData(@Nullable Bundle savedInstanceState);
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onAttach(Context context) {
+        super.onAttach(context);
 
-        mBehaviorSubject.onNext(RxLifecycleEvent.CREATE);
-
-        try {
-            int layoutId = initView();
-            if (layoutId > 0) {
-                setContentView(layoutId);
-
-                // ButterKnife 绑定
-                mUnbinder = ButterKnife.bind(this);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        initBaseData(savedInstanceState);
+        mBehaviorSubject.onNext(RxLifecycleEvent.ATTACH);
     }
 
     @Override
-    protected void onStart() {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mBehaviorSubject.onNext(RxLifecycleEvent.CREATE);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(initView(), container, false);
+
+        mUnbinder = ButterKnife.bind(this, view);
+
+        initBaseData(savedInstanceState);
+
+        mBehaviorSubject.onNext(RxLifecycleEvent.CREATE_VIEW);
+
+        return view;
+    }
+
+    @Override
+    public void onStart() {
         super.onStart();
 
         mBehaviorSubject.onNext(RxLifecycleEvent.START);
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
 
         mBehaviorSubject.onNext(RxLifecycleEvent.RESUME);
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
 
         mBehaviorSubject.onNext(RxLifecycleEvent.PAUSE);
     }
 
     @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
 
         mBehaviorSubject.onNext(RxLifecycleEvent.STOP);
     }
 
     @Override
-    protected void onDestroy() {
-        // ButterKnife 解除绑定
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        mBehaviorSubject.onNext(RxLifecycleEvent.DESTROY_VIEW);
+    }
+
+    @Override
+    public void onDestroy() {
         if (null != mUnbinder) {
             mUnbinder.unbind();
             mUnbinder = null;
@@ -92,6 +103,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         mBehaviorSubject.onNext(RxLifecycleEvent.DESTROY);
 
         super.onDestroy();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
+        mBehaviorSubject.onNext(RxLifecycleEvent.DETACH);
     }
 
     public <T> ObservableTransformer<T, T> bindUtil(Class<T> streamType, RxLifecycleEvent lifecycle) {

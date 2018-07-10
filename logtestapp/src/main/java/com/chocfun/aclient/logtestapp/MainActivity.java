@@ -1,5 +1,7 @@
 package com.chocfun.aclient.logtestapp;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.widget.EditText;
 
 import com.chocfun.baselib.log.LogHelper;
@@ -14,15 +16,16 @@ public class MainActivity extends BaseActivity {
     EditText mEditText;
 
     @Override
-    public int getLayoutId() {
+    public int initView() {
         return R.layout.activity_main;
     }
 
     @Override
-    public void initData() {
+    public void initBaseData(@Nullable Bundle savedInstanceState) {
         mEditText.setText("测试日志打印");
 
         LogHelper.t("测试TAG").i("测试；啊交水电费");
+
     }
 
     @OnClick(R.id.v_btn)

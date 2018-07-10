@@ -1,5 +1,7 @@
 package com.chocfun.aclient.httpapp;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -34,12 +36,12 @@ public class OKHttpActivity extends BaseActivity {
     private Disposable mDisposable;
 
     @Override
-    public int getLayoutId() {
+    public int initView() {
         return R.layout.activity_okhttp;
     }
 
     @Override
-    public void initData() {
+    public void initBaseData(@Nullable Bundle savedInstanceState) {
         // 创建 OkHttpClient 对象
         mOkHttpClient = new OkHttpClient();
     }

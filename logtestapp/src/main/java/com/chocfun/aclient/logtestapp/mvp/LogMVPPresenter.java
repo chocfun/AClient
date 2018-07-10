@@ -2,6 +2,7 @@ package com.chocfun.aclient.logtestapp.mvp;
 
 import com.chocfun.baselib.log.LogHelper;
 import com.chocfun.baselib.mvp.BaseMVPPresenter;
+import com.chocfun.baselib.rxlifecycle.RxLifecycleEvent;
 
 import java.util.concurrent.TimeUnit;
 
@@ -40,6 +41,62 @@ public class LogMVPPresenter extends BaseMVPPresenter<LogContracts.View> impleme
                     @Override
                     public void onComplete() {
                         mView.showSomething();
+                    }
+                });
+    }
+
+    @Override
+    public void doUntilStop() {
+        Observable.interval(1, TimeUnit.SECONDS)
+                .compose(mView.bindToLifecycle(Long.class, RxLifecycleEvent.STOP))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Long>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Long aLong) {
+                        LogHelper.i(Long.toString(aLong));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    @Override
+    public void doUntilDestroy() {
+        Observable.interval(1, TimeUnit.SECONDS)
+                .compose(mView.bindToLifecycle(Long.class))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Long>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Long aLong) {
+                        LogHelper.i(Long.toString(aLong));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
                     }
                 });
     }

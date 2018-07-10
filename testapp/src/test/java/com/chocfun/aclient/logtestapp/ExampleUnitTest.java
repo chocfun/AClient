@@ -1,4 +1,4 @@
-package com.chocfun.aclient.logtestapp;
+package com.chocfun.aclient.testapp;
 
 import org.junit.Test;
 

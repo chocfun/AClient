@@ -1,4 +1,4 @@
-package com.chocfun.aclient.logtestapp;
+package com.chocfun.aclient.testapp;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.chocfun.aclient.logtestapp", appContext.getPackageName());
+        assertEquals("com.chocfun.aclient.testapp", appContext.getPackageName());
     }
 }

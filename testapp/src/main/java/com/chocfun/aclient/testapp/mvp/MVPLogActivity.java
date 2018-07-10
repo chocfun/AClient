@@ -1,4 +1,4 @@
-package com.chocfun.aclient.logtestapp.mvp;
+package com.chocfun.aclient.testapp.mvp;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.chocfun.aclient.logtestapp.R;
+import com.chocfun.aclient.testapp.R;
 import com.chocfun.baselib.log.LogHelper;
 import com.chocfun.baselib.mvp.BaseMVPActivity;
 

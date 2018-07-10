@@ -1,11 +1,11 @@
-package com.chocfun.aclient.logtestapp.mvp;
+package com.chocfun.aclient.testapp.mvp;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.chocfun.aclient.logtestapp.R;
+import com.chocfun.aclient.testapp.R;
 import com.chocfun.baselib.mvp.BaseActivity;
 
 public class LogFragmentActivity extends BaseActivity {

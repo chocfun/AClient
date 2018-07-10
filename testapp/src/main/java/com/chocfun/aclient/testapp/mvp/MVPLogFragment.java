@@ -1,13 +1,12 @@
-package com.chocfun.aclient.logtestapp.mvp;
+package com.chocfun.aclient.testapp.mvp;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.chocfun.aclient.logtestapp.R;
+import com.chocfun.aclient.testapp.R;
 import com.chocfun.baselib.log.LogHelper;
-import com.chocfun.baselib.mvp.BaseFragment;
 import com.chocfun.baselib.mvp.BaseMVPFragment;
 
 import butterknife.BindView;

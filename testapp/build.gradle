@@ -6,7 +6,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.chocfun.aclient.logtestapp"
+        applicationId "com.chocfun.aclient.testapp"
         minSdkVersion 19
         targetSdkVersion 27
         versionCode 1

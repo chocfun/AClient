@@ -1,4 +1,4 @@
-package com.chocfun.aclient.logtestapp.mvp;
+package com.chocfun.aclient.testapp.mvp;
 
 import com.chocfun.baselib.mvp.IBasePresenter;
 import com.chocfun.baselib.mvp.IBaseView;

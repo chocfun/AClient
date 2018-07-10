@@ -1,9 +1,10 @@
-package com.chocfun.aclient.logtestapp;
+package com.chocfun.aclient.testapp;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.EditText;
 
+import com.chocfun.aclient.testapp.R;
 import com.chocfun.baselib.log.LogHelper;
 import com.chocfun.baselib.mvp.BaseActivity;
 
@@ -11,7 +12,6 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 public class LogActivity extends BaseActivity {
-
     @BindView(R.id.edit_text)
     EditText mEditText;
 
@@ -25,7 +25,6 @@ public class LogActivity extends BaseActivity {
         mEditText.setText("测试日志打印");
 
         LogHelper.t("测试TAG").i("测试；啊交水电费");
-
     }
 
     @OnClick(R.id.v_btn)

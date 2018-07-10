@@ -1,4 +1,4 @@
-package com.chocfun.aclient.logtestapp.mvp;
+package com.chocfun.aclient.testapp.mvp;
 
 import com.chocfun.baselib.log.LogHelper;
 import com.chocfun.baselib.mvp.BaseMVPPresenter;

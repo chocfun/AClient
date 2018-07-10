@@ -3,7 +3,7 @@ package com.chocfun.aclient.logtestapp;
 import android.widget.EditText;
 
 import com.chocfun.baselib.log.LogHelper;
-import com.chocfun.baselib.ui.BaseActivity;
+import com.chocfun.baselib.mvp.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;

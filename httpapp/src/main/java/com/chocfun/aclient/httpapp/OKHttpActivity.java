@@ -4,7 +4,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.chocfun.baselib.log.LogHelper;
-import com.chocfun.baselib.ui.BaseActivity;
+import com.chocfun.baselib.mvp.BaseActivity;
 import com.chocfun.baselib.util.OneTapUtil;
 import com.chocfun.baselib.util.XTextUtil;
 

@@ -1,8 +1,0 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.chocfun.aclient.imagemodule">
-
-    <application android:allowBackup="true">
-        <activity android:name=".ui.ImageActivity"/>
-    </application>
-
-</manifest>

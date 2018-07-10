@@ -1,1 +1,1 @@
-include ':app', ':baselib', ':logtestapp', ':httpapp'
+include ':app', ':baselib', ':testapp', ':httpapp'

@@ -10,14 +10,14 @@ import com.chocfun.baselib.mvp.BaseActivity;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity {
+public class LogActivity extends BaseActivity {
 
     @BindView(R.id.edit_text)
     EditText mEditText;
 
     @Override
     public int initView() {
-        return R.layout.activity_main;
+        return R.layout.activity_log;
     }
 
     @Override

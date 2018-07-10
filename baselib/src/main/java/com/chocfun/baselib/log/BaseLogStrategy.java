@@ -23,7 +23,7 @@ public interface BaseLogStrategy {
     void setTag(String tag);
 
     /**
-     * 设置封装层
+     * 设置封装层(在定位日志位置时使用)
      * @param wrapper 封装层类名
      */
     void setWrapper(String wrapper);

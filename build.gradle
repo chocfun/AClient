@@ -43,6 +43,10 @@ ext {
     butterknifeVersion = "8.8.1"
     glideVersion = "4.7.1"
     loggerVersion = "2.2.0"
+    okHttp3Version = "3.10.0"
+    rxAndroidVersion = "2.0.2"
+    rxJavaVersion = "2.1.16"
+    retrofit2Version = "2.4.0"
 
     dependencies = [
             libButterKnife            : "com.jakewharton:butterknife:$butterknifeVersion",
@@ -52,6 +56,13 @@ ext {
             libGlide                  : "com.github.bumptech.glide:glide:$glideVersion",
             libGlideProcessor         : "com.github.bumptech.glide:compiler:$glideVersion",
 
-            libLogger : "com.orhanobut:logger:$loggerVersion"
+            libLogger : "com.orhanobut:logger:$loggerVersion",
+
+            libOkHttp3 : "com.squareup.okhttp3:okhttp:$okHttp3Version",
+
+            libRxAndroid : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
+            libRxJava2 : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
+
+            libRetrofit2 : "com.squareup.retrofit2:retrofit:$retrofit2Version"
     ]
 }

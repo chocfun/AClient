@@ -26,7 +26,6 @@ public class MVPLogActivity extends BaseMVPActivity<LogContracts.Presenter> impl
 
     @Override
     protected LogContracts.Presenter createPresenter() {
-//        return LogMVPPresenter.newInstance();
-        return null;
+        return LogMVPPresenter.newInstance();
     }
 }

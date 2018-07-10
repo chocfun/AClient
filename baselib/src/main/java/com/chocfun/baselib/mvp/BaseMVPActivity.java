@@ -1,5 +1,7 @@
 package com.chocfun.baselib.mvp;
 
+import com.chocfun.baselib.util.PreconditionUtil;
+
 @SuppressWarnings("unchecked")
 public abstract class BaseMVPActivity<P extends IBasePresenter> extends BaseActivity implements IBaseView {
     protected P mPresenter;
@@ -8,11 +10,10 @@ public abstract class BaseMVPActivity<P extends IBasePresenter> extends BaseActi
 
     @Override
     public void initData() {
-        mPresenter = createPresenter();
+        // 初始化Presenter，确保Presenter不为空
+        mPresenter = PreconditionUtil.assertNotNull(createPresenter(), "Presenter cannot be null");
 
-        if (null == mPresenter) {
-            throw new NullPointerException("Presenter can not be null");
-        }
+        mPresenter.attach(this);
     }
 
     @Override

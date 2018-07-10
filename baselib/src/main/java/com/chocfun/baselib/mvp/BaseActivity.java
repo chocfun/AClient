@@ -37,11 +37,11 @@ public abstract class BaseActivity extends AppCompatActivity {
                 // ButterKnife 绑定
                 mUnbinder = ButterKnife.bind(this);
             }
-
-            initData();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        initData();
     }
 
     @Override

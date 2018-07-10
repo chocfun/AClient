@@ -15,6 +15,8 @@ public class LogMVPPresenter extends BaseMVPPresenter<LogContracts.View> impleme
         return new LogMVPPresenter();
     }
 
+    private Disposable mDisposable;
+
     @Override
     public void doSomething() {
         LogHelper.i("doSomething");
@@ -23,7 +25,7 @@ public class LogMVPPresenter extends BaseMVPPresenter<LogContracts.View> impleme
                 .subscribe(new Observer<Long>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-
+                        mDisposable = d;
                     }
 
                     @Override
@@ -40,5 +42,16 @@ public class LogMVPPresenter extends BaseMVPPresenter<LogContracts.View> impleme
                         mView.showSomething();
                     }
                 });
+    }
+
+    @Override
+    public void detach() {
+        LogHelper.d("LogMVPPresenter : detach");
+
+        if (null != mDisposable) {
+            mDisposable.dispose();
+        }
+
+        super.detach();
     }
 }

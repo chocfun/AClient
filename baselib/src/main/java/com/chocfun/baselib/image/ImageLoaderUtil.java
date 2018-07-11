@@ -1,12 +1,14 @@
 package com.chocfun.baselib.image;
 
-import android.app.Activity;
+import android.content.Context;
+
+import com.chocfun.baselib.image.glide.GlideStrategy;
 
 public class ImageLoaderUtil {
-    private BaseImageLoaderStrategy mStrategy;
+    private IImageLoaderStrategy mStrategy;
 
     private ImageLoaderUtil() {
-        mStrategy = new GlideImageLoaderStrategy();
+        mStrategy = new GlideStrategy();
     }
 
     private static class SingletonHolder {
@@ -17,8 +19,12 @@ public class ImageLoaderUtil {
         return SingletonHolder.instance;
     }
 
-    public <E extends Activity, T extends BaseImageConfig> void loadImage(E context, T config) {
-        mStrategy.loadImage(context, config);
+    public void loadImage(ImageLoaderConfig context) {
+        mStrategy.loadImage(context);
+    }
+
+    public ImageLoaderConfig.Builder load(Context context) {
+        return new ImageLoaderConfig.Builder(context);
     }
 
 }

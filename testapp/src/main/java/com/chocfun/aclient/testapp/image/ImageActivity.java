@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
 import com.chocfun.aclient.testapp.R;
+import com.chocfun.baselib.image.ImageHelper;
 import com.chocfun.baselib.mvp.BaseActivity;
 
 import butterknife.BindView;
@@ -29,6 +30,6 @@ public class ImageActivity extends BaseActivity {
 
     @OnClick(R.id.load_img_btn)
     public void loadImage() {
-
+        ImageHelper.loadImage(this, mImageView, mImgUrl, 0);
     }
 }

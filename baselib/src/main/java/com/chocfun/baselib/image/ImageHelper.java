@@ -1,8 +1,14 @@
 package com.chocfun.baselib.image;
 
-import android.app.Activity;
+import android.content.Context;
+import android.widget.ImageView;
 
 public class ImageHelper {
-    public static void loadImage(Activity activity, String url, int errPic, int placeHolder) {
+    public static void loadImage(Context context, ImageView imageView, String url, int placeholder) {
+        ImageLoaderUtil.getIntance()
+                .loadImage(new ImageLoaderConfig(new ImageLoaderConfig.Builder(context)
+                        .url(url)
+                        .placeholder(placeholder)
+                        .into(imageView)));
     }
 }

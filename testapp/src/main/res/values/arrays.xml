@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="image_src_type">
+        <item>正常图片</item>
+        <item>错误图片</item>
+    </string-array>
+</resources>

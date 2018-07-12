@@ -1,5 +1,6 @@
 package com.chocfun.baselib.image.glide;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 
 import com.bumptech.glide.Glide;
@@ -13,7 +14,8 @@ import com.chocfun.baselib.image.ImageLoaderConfig;
 public class GlideStrategy implements IImageLoaderStrategy {
     @Override
     public void loadImage(ImageLoaderConfig config) {
-        RequestManager requestManager = Glide.with(config.context);
+        RequestManager requestManager = createRequestManager(config);
+
         RequestBuilder<Drawable> builder = requestManager.load(config.url);
 
         RequestOptions options = new RequestOptions();
@@ -42,5 +44,21 @@ public class GlideStrategy implements IImageLoaderStrategy {
     @Override
     public void clearDiskCache() {
 
+    }
+
+    private RequestManager createRequestManager(ImageLoaderConfig config) {
+        if (config.context != null) {
+            return Glide.with(config.context);
+        }
+
+        if (null != config.activity) {
+            return Glide.with(config.activity);
+        }
+
+        if (null != config.fragment) {
+            return Glide.with(config.fragment);
+        }
+
+        throw new NullPointerException("Context cannot be null when use Glide");
     }
 }

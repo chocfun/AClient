@@ -1,64 +1,57 @@
 package com.chocfun.baselib.image;
 
+import android.app.Activity;
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.widget.ImageView;
 
 public class ImageLoaderConfig {
-    public final Context context;
-    public final String url;
-    public final int placeholder;
-    public final ImageView imageView;
-    public final boolean isCenterCrop;
-    public final boolean isCenterInside;
+    public Context context;
+    public Activity activity;
+    public Fragment fragment;
 
-    public ImageLoaderConfig(Builder builder) {
-        this.context = builder.context;
-        this.url = builder.url;
-        this.placeholder = builder.placeholder;
-        this.imageView = builder.imageView;
-        this.isCenterCrop = builder.isCenterCrop;
-        this.isCenterInside = builder.isCenterInside;
+    public String url;
+    public int placeholder;
+
+    public ImageView imageView;
+
+    public boolean isCenterCrop;
+    public boolean isCenterInside;
+
+    public ImageLoaderConfig(Context context) {
+        this.context = context;
     }
 
+    public ImageLoaderConfig(Activity activity) {
+        this.activity = activity;
+    }
 
-    public static class Builder {
-        private final Context context;
+    public ImageLoaderConfig(Fragment fragment) {
+        this.fragment = fragment;
+    }
 
-        private String url;
-        private int placeholder;
+    public void into(ImageView imageView) {
+        this.imageView = imageView;
+        ImageLoaderProxy.getInstance().loadImage(this);
+    }
 
-        private ImageView imageView;
+    public ImageLoaderConfig url(String url) {
+        this.url = url;
+        return this;
+    }
 
-        private boolean isCenterCrop;
-        private boolean isCenterInside;
+    public ImageLoaderConfig placeholder(int placeholder) {
+        this.placeholder = placeholder;
+        return this;
+    }
 
-        public Builder(Context context) {
-            this.context = context;
-        }
+    public ImageLoaderConfig centerCrop(boolean isCenterCrop) {
+        this.isCenterCrop = isCenterCrop;
+        return this;
+    }
 
-        public Builder url(String url) {
-            this.url = url;
-            return this;
-        }
-
-        public Builder placeholder(int placeholder) {
-            this.placeholder = placeholder;
-            return this;
-        }
-
-        public Builder into(ImageView imageView) {
-            this.imageView = imageView;
-            return this;
-        }
-
-        public Builder centerCrop(boolean isCenterCrop) {
-            this.isCenterCrop = isCenterCrop;
-            return this;
-        }
-
-        public Builder centerInside(boolean isCenterInside) {
-            this.isCenterInside = isCenterInside;
-            return this;
-        }
+    public ImageLoaderConfig centerInside(boolean isCenterInside) {
+        this.isCenterInside = isCenterInside;
+        return this;
     }
 }

@@ -1,10 +1,12 @@
 package com.chocfun.aclient.testapp.image;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 
 import com.chocfun.aclient.testapp.R;
@@ -22,6 +24,10 @@ public class ImageActivity extends BaseActivity {
     Spinner mSrcSpinner;
     @BindView(R.id.image_view)
     ImageView mImageView;
+    @BindView(R.id.border_width_seekbar)
+    SeekBar mBorderWidthSB;
+
+    private int mBorderWidth;
 
     private static final String[] mImageUrls = {
             "http://pic1.win4000.com/wallpaper/6/5897d5d889d53.jpg",
@@ -49,13 +55,41 @@ public class ImageActivity extends BaseActivity {
 
             }
         });
+
+        mBorderWidthSB.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                LogHelper.d("边框宽度 " + progress);
+                mBorderWidth = progress;
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
 
     @OnClick(R.id.load_img_btn)
     public void loadImage() {
         ImageLoader.load(this)
                 .url(mCurrentImageIndex < mImageUrls.length ? mImageUrls[mCurrentImageIndex] : null)
+                .into(mImageView);
+    }
+
+    @OnClick(R.id.load_circle_img_btn)
+    public void loadCircleImage() {
+        ImageLoader.load(this)
+                .url(mCurrentImageIndex < mImageUrls.length ? mImageUrls[mCurrentImageIndex] : null)
                 .centerCrop(true)
+                .isCircle(true)
+                .borderWidth(mBorderWidth)
+                .borderColor(Color.BLACK)
                 .into(mImageView);
     }
 }

@@ -35,6 +35,12 @@
 
     </LinearLayout>
 
+    <SeekBar
+        android:id="@+id/border_width_seekbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="10"/>
+
 
     <ImageView
         android:id="@+id/image_view"

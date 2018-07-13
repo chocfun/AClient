@@ -6,17 +6,21 @@ import android.support.v4.app.Fragment;
 import android.widget.ImageView;
 
 public class ImageLoaderConfig {
-    public Context context;
-    public Activity activity;
-    public Fragment fragment;
+    private Context context;
+    private Activity activity;
+    private Fragment fragment;
 
-    public String url;
-    public int placeholder;
+    private String url;
+    private int placeholder;
 
-    public ImageView imageView;
+    private ImageView imageView;
 
-    public boolean isCenterCrop;
-    public boolean isCenterInside;
+    private boolean isCenterCrop;
+    private boolean isCenterInside;
+
+    private boolean isCircle;
+    private int borderWidth;
+    private int borderColor;
 
     public ImageLoaderConfig(Context context) {
         this.context = context;
@@ -53,5 +57,64 @@ public class ImageLoaderConfig {
     public ImageLoaderConfig centerInside(boolean isCenterInside) {
         this.isCenterInside = isCenterInside;
         return this;
+    }
+
+    public ImageLoaderConfig isCircle(boolean isCircle) {
+        this.isCircle = isCircle;
+        return this;
+    }
+
+    public ImageLoaderConfig borderWidth(int borderWidth) {
+        this.borderWidth = borderWidth;
+        return this;
+    }
+
+    public ImageLoaderConfig borderColor(int borderColor) {
+        this.borderColor = borderColor;
+        return this;
+    }
+
+    public Context getContext() {
+        return context;
+    }
+
+    public Activity getActivity() {
+        return activity;
+    }
+
+    public Fragment getFragment() {
+        return fragment;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public int getPlaceholder() {
+        return placeholder;
+    }
+
+    public ImageView getImageView() {
+        return imageView;
+    }
+
+    public boolean isCenterCrop() {
+        return isCenterCrop;
+    }
+
+    public boolean isCenterInside() {
+        return isCenterInside;
+    }
+
+    public boolean isCircle() {
+        return isCircle;
+    }
+
+    public int getBorderWidth() {
+        return borderWidth;
+    }
+
+    public int getBorderColor() {
+        return borderColor;
     }
 }

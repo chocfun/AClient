@@ -2,6 +2,13 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
+
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
     defaultConfig {
         applicationId "com.chocfun.aclient"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -25,4 +32,9 @@ dependencies {
     testImplementation "junit:junit:$rootProject.junitVersion"
     androidTestImplementation "com.android.support.test:runner:$rootProject.testRunner"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.testEspressoCore"
+    annotationProcessor rootProject.ext.dependencies.libButterKnifeCompiler
+    implementation project(':commonservice')
+    implementation project(':modulea')
+    implementation project(':moduleb')
+    implementation project(':modulelogin')
 }

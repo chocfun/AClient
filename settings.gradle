@@ -1,1 +1,1 @@
-include ':app', ':baselib', ':testapp', ':httpapp'
+include ':app', ':baselib', ':testapp', ':httpapp', ':modulea', ':commonservice', ':moduleb', ':modulelogin'

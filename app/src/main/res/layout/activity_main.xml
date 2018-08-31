@@ -6,12 +6,26 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
+    android:padding="10dp"
     tools:context=".MainActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="@string/app_name"/>
+
     <Button
-        android:id="@+id/img_btn"
+        android:id="@+id/open_module_a_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="IMG"/>
+        android:layout_marginBottom="10dp"
+        android:text="打开ModuleA" />
+
+    <Button
+        android:id="@+id/open_module_b_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="打开ModuleB" />
 
 </LinearLayout>

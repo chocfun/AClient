@@ -30,7 +30,7 @@ public class MVPLogActivity extends BaseMVPActivity<LogContracts.Presenter> impl
     }
 
     @Override
-    protected void initData(@Nullable Bundle savedInstanceState) {
+    protected void initMVPData(@Nullable Bundle savedInstanceState) {
         mGotoBtn.setText("跳转到Fragment");
     }
 

@@ -1,0 +1,4 @@
+<resources>
+    <string name="modulea_module_name">Module A</string>
+    <string name="modulea_start_module_b">打开 Module B</string>
+</resources>

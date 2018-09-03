@@ -13,7 +13,7 @@ public abstract class BaseMVPFragment<P extends IBasePresenter> extends BaseFrag
     protected P mPresenter;
 
     protected abstract P createPresenter();
-    protected abstract void initData(@Nullable Bundle savedInstanceState);
+    protected abstract void initMVPData(@Nullable Bundle savedInstanceState);
 
     @Override
     public void initBaseData(@Nullable Bundle savedInstanceState) {
@@ -22,7 +22,7 @@ public abstract class BaseMVPFragment<P extends IBasePresenter> extends BaseFrag
 
         mPresenter.attach(this);
 
-        initData(savedInstanceState);
+        initMVPData(savedInstanceState);
     }
 
     @Override

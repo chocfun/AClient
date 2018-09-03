@@ -1,6 +1,8 @@
 package com.chocfun.aclient.commonservice.router;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
 
 import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.callback.NavigationCallback;
@@ -37,6 +39,12 @@ public final class RouterHelper {
                 });
     }
 
+    public static Fragment getFragmentA() {
+        return (Fragment) ARouter.getInstance()
+                .build(ModuleARouterPath.FramgentA)
+                .navigation();
+    }
+
     public static void startModuleBActivity(int p1, String p2) {
         ARouter.getInstance()
                 .build(ModuleBRouterPath.ModuleBActivity)
@@ -45,9 +53,11 @@ public final class RouterHelper {
                 .navigation();
     }
 
-    public static void startLogin() {
+    public static void startLogin(String path, Bundle bundle) {
         ARouter.getInstance()
                 .build(LoginRouterPath.LoginActivity)
+                .withString("routerPath", path)
+                .withBundle("routerBundle", bundle)
                 .navigation();
     }
 }

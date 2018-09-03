@@ -7,6 +7,7 @@ import com.alibaba.android.arouter.facade.annotation.Interceptor;
 import com.alibaba.android.arouter.facade.callback.InterceptorCallback;
 import com.alibaba.android.arouter.facade.template.IInterceptor;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.chocfun.aclient.commonservice.constants.LoginInfo;
 import com.chocfun.aclient.commonservice.router.RouterHelper;
 import com.chocfun.aclient.commonservice.router.routerpath.ModuleBRouterPath;
 import com.chocfun.baselib.log.LogHelper;
@@ -16,10 +17,11 @@ public class LoginInterceptor implements IInterceptor {
     @Override
     public void process(Postcard postcard, InterceptorCallback callback) {
         LogHelper.i("process : " + postcard.getPath());
-        if (postcard.getPath().equals(ModuleBRouterPath.ModuleBActivity)) {
+        if (postcard.getPath().equals(ModuleBRouterPath.ModuleBActivity) && !LoginInfo.LOGINED) {
             LogHelper.i("打开 ModuleBActivity 需要先登录");
             LogHelper.i(postcard.toString());
-            RouterHelper.startLogin();
+
+            RouterHelper.startLogin(postcard.getPath(), postcard.getExtras());
         } else {
             callback.onContinue(postcard);
         }

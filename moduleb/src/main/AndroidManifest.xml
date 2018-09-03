@@ -2,6 +2,7 @@
     package="com.chocfun.aclient.moduleb" >
     <application>
         <activity android:name=".ModuleBActivity"/>
+        <activity android:name=".FragmentAActivity"/>
     </application>
 </manifest>
 

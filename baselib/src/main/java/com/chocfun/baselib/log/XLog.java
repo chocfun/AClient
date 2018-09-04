@@ -13,7 +13,7 @@ public class XLog implements BaseLogStrategy {
     private String mMethodName;
     private int mLineNumber;
     private String mWrapperName;
-    private String mTAG = XLog.class.getSimpleName().toString();
+    private String mTAG = XLog.class.getSimpleName();
 
     @Override
     public void init(String tag) {
@@ -112,7 +112,7 @@ public class XLog implements BaseLogStrategy {
     private String getMethodLog() {
         getMethodInfo(getTargetStackTraceElement());
 
-        return "(" + mClassName + ":" + mLineNumber + ")";
+        return "(" + mClassName + ":" + mLineNumber + ") " + mMethodName;
     }
 
 

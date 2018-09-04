@@ -16,12 +16,12 @@ public class LogActivity extends BaseActivity {
     EditText mEditText;
 
     @Override
-    public int initView() {
+    public int getLayoutId() {
         return R.layout.activity_log;
     }
 
     @Override
-    public void initBaseData(@Nullable Bundle savedInstanceState) {
+    public void initData(@Nullable Bundle savedInstanceState) {
         mEditText.setText("测试日志打印");
 
         LogHelper.t("测试TAG").i("测试；啊交水电费");

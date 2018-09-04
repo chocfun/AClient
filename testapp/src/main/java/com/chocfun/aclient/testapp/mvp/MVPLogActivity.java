@@ -25,12 +25,12 @@ public class MVPLogActivity extends BaseMVPActivity<LogContracts.Presenter> impl
     Button mGotoBtn;
 
     @Override
-    public int initView() {
+    public int getLayoutId() {
         return R.layout.activity_mvp_activity;
     }
 
     @Override
-    protected void initMVPData(@Nullable Bundle savedInstanceState) {
+    public void initData(@Nullable Bundle savedInstanceState) {
         mGotoBtn.setText("跳转到Fragment");
     }
 

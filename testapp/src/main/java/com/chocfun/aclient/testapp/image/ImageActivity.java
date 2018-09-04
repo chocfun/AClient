@@ -37,12 +37,12 @@ public class ImageActivity extends BaseActivity {
     private int mCurrentImageIndex = 0;
 
     @Override
-    public int initView() {
+    public int getLayoutId() {
         return R.layout.activity_image;
     }
 
     @Override
-    public void initBaseData(@Nullable Bundle savedInstanceState) {
+    public void initData(@Nullable Bundle savedInstanceState) {
         mSrcSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

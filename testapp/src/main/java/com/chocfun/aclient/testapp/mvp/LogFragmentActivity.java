@@ -15,12 +15,12 @@ public class LogFragmentActivity extends BaseActivity {
     }
 
     @Override
-    public int initView() {
+    public int getLayoutId() {
         return R.layout.activity_fragment;
     }
 
     @Override
-    public void initBaseData(@Nullable Bundle savedInstanceState) {
+    public void initData(@Nullable Bundle savedInstanceState) {
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.root_view, new MVPLogFragment())

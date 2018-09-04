@@ -18,6 +18,7 @@ public class XLog implements BaseLogStrategy {
     @Override
     public void init(String tag) {
         this.mOriginalTAG = tag;
+
         resetDefaultLevel();
     }
 
@@ -51,31 +52,49 @@ public class XLog implements BaseLogStrategy {
     }
 
     private void print(String methodLog, String message) {
-        switch (mLevel) {
-            case LogConstants.VERBOSE:
-                Log.v(getTAG(), methodLog);
-                Log.v(getTAG(), message);
-                break;
-            case LogConstants.DEBUG:
-                Log.d(getTAG(), methodLog);
-                Log.d(getTAG(), message);
-                break;
-            case LogConstants.INFO:
-                Log.i(getTAG(), methodLog);
-                Log.i(getTAG(), message);
-                break;
-            case LogConstants.WARN:
-                Log.w(getTAG(), methodLog);
-                Log.w(getTAG(), message);
-                break;
-            case LogConstants.ERROR:
-                Log.e(getTAG(), methodLog);
-                Log.e(getTAG(), message);
-                break;
+        message = message.trim();
+
+        int maxLength = 2 * 1024;
+
+        while (message.length() > maxLength) {
+            doPrint(methodLog, message.substring(0, maxLength));
+
+            if (null != methodLog) {
+                methodLog = null;
+            }
+
+            message = message.substring(maxLength);
         }
+
+        doPrint(methodLog, message);
 
         // 重置日志等级
         resetDefaultLevel();
+    }
+
+    private void doPrint(String methodLog, String message) {
+        switch (mLevel) {
+            case LogConstants.VERBOSE:
+                Log.v(getTAG(), formatMessage(methodLog, message));
+                break;
+            case LogConstants.DEBUG:
+                Log.d(getTAG(), formatMessage(methodLog, message));
+                break;
+            case LogConstants.INFO:
+                Log.i(getTAG(), formatMessage(methodLog, message));
+                break;
+            case LogConstants.WARN:
+                Log.w(getTAG(), formatMessage(methodLog, message));
+                break;
+            case LogConstants.ERROR:
+                Log.e(getTAG(), formatMessage(methodLog, message));
+                break;
+        }
+    }
+
+    private String formatMessage(String methodLog, String message) {
+        return (null != methodLog && methodLog.length() > 0) ?
+                methodLog + "\n" + message : message;
     }
 
     /**

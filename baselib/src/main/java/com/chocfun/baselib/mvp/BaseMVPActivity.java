@@ -13,16 +13,13 @@ public abstract class BaseMVPActivity<P extends IBasePresenter> extends BaseActi
     protected P mPresenter;
 
     protected abstract P createPresenter();
-    protected abstract void initMVPData(@Nullable Bundle savedInstanceState);
 
     @Override
-    public void initBaseData(@Nullable Bundle savedInstanceState) {
+    public void beforeInitData(@Nullable Bundle savedInstanceState) {
         // 初始化Presenter，确保Presenter不为空
         mPresenter = PreconditionUtil.assertNotNull(createPresenter(), "Presenter cannot be null");
 
         mPresenter.attach(this);
-
-        initMVPData(savedInstanceState);
     }
 
     @Override

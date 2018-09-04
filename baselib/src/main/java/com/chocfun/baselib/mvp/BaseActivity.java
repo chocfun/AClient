@@ -16,21 +16,21 @@ import io.reactivex.subjects.BehaviorSubject;
  * 封装Activity基类
  *
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements IBaseActivity {
 
     // ButterKnife解除绑定
     private Unbinder mUnbinder;
     private final BehaviorSubject<RxLifecycleEvent> mBehaviorSubject = BehaviorSubject.create();
 
-    /**
-     * 在这里设置Activity对应的layout文件
-     */
-    public abstract int initView();
-
-    /**
-     * 设置layout id 后的初始化工作在这里进行
-     */
-    public abstract void initBaseData(@Nullable Bundle savedInstanceState);
+//    /**
+//     * 在这里设置Activity对应的layout文件
+//     */
+//    public abstract int initView();
+//
+//    /**
+//     * 设置layout id 后的初始化工作在这里进行
+//     */
+//    public abstract void initBaseData(@Nullable Bundle savedInstanceState);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         mBehaviorSubject.onNext(RxLifecycleEvent.CREATE);
 
         try {
-            int layoutId = initView();
+            int layoutId = getLayoutId();
             if (layoutId > 0) {
                 setContentView(layoutId);
 
@@ -50,7 +50,13 @@ public abstract class BaseActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        initBaseData(savedInstanceState);
+        beforeInitData(savedInstanceState);
+
+        initData(savedInstanceState);
+    }
+
+    protected void beforeInitData(Bundle saveInstanceState) {
+
     }
 
     @Override

@@ -6,28 +6,30 @@ import android.support.annotation.Nullable;
 import com.chocfun.baselib.rxlifecycle.RxLifecycleEvent;
 import com.chocfun.baselib.util.PreconditionUtil;
 
+import javax.inject.Inject;
+
 import io.reactivex.ObservableTransformer;
 
 @SuppressWarnings("unchecked")
 public abstract class BaseMVPFragment<P extends IBasePresenter> extends BaseFragment implements IBaseView {
+    @Inject
+    @Nullable
     protected P mPresenter;
 
-    protected abstract P createPresenter();
-    protected abstract void initMVPData(@Nullable Bundle savedInstanceState);
-
     @Override
-    public void initBaseData(@Nullable Bundle savedInstanceState) {
-        // 初始化Presenter，确保Presenter不为空
-        mPresenter = PreconditionUtil.assertNotNull(createPresenter(), "Presenter cannot be null");
+    protected void beforeInitData() {
+        super.beforeInitData();
 
-        mPresenter.attach(this);
-
-        initMVPData(savedInstanceState);
+        if (null != mPresenter) {
+            mPresenter.attach();
+        }
     }
 
     @Override
     public void onDestroy() {
-        mPresenter.detach();
+        if (null != mPresenter) {
+            mPresenter.detach();
+        }
 
         super.onDestroy();
     }

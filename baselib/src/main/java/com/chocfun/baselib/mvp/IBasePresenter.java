@@ -1,6 +1,6 @@
 package com.chocfun.baselib.mvp;
 
-public interface IBasePresenter <V extends IBaseView> {
-    void attach(V view);
+public interface IBasePresenter {
+    void attach();
     void detach();
 }

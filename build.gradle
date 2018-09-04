@@ -52,6 +52,7 @@ ext {
     retrofit2Version = "2.4.0"
     arouterApiVersion = "1.4.0"
     arouterCompilerVersion = "1.2.1"
+    dagger2Verstion = "2.4"
 
     dependencies = [
             libButterKnife            : "com.jakewharton:butterknife:$butterknifeVersion",
@@ -71,6 +72,9 @@ ext {
             libRetrofit2 : "com.squareup.retrofit2:retrofit:$retrofit2Version",
 
             libARouter : "com.alibaba:arouter-api:$arouterApiVersion",
-            libARouterCompiler : "com.alibaba:arouter-compiler:$arouterCompilerVersion"
+            libARouterCompiler : "com.alibaba:arouter-compiler:$arouterCompilerVersion",
+
+            libDagger2 : "com.google.dagger:dagger:$dagger2Verstion",
+            libDagger2Compiler : "com.google.dagger:dagger-compiler:$dagger2Verstion"
     ]
 }

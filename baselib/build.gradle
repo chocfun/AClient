@@ -56,8 +56,11 @@ dependencies {
         exclude module: 'okhttp'
         exclude module: 'okio'
     }
-
+    // ARouter
     api(rootProject.ext.dependencies.libARouter) {
         exclude group: 'com.android.support'
     }
+    // Dagger2
+    api rootProject.ext.dependencies.libDagger2
+    annotationProcessor rootProject.ext.dependencies.libDagger2Compiler
 }

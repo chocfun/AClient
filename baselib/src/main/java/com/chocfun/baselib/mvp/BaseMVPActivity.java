@@ -6,25 +6,32 @@ import android.support.annotation.Nullable;
 import com.chocfun.baselib.rxlifecycle.RxLifecycleEvent;
 import com.chocfun.baselib.util.PreconditionUtil;
 
+import javax.inject.Inject;
+
 import io.reactivex.ObservableTransformer;
 
-@SuppressWarnings("unchecked")
 public abstract class BaseMVPActivity<P extends IBasePresenter> extends BaseActivity implements IBaseView {
+
+    @Inject
+    @Nullable
     protected P mPresenter;
 
-    protected abstract P createPresenter();
+    public P getPresenter() {
+        return PreconditionUtil.assertNotNull(mPresenter, mPresenter.getClass().getSimpleName() + " can not be null!");
+    }
 
     @Override
     public void beforeInitData(@Nullable Bundle savedInstanceState) {
-        // 初始化Presenter，确保Presenter不为空
-        mPresenter = PreconditionUtil.assertNotNull(createPresenter(), "Presenter cannot be null");
-
-        mPresenter.attach(this);
+        if (null != mPresenter) {
+            mPresenter.attach();
+        }
     }
 
     @Override
     protected void onDestroy() {
-        mPresenter.detach();
+        if (null != mPresenter) {
+            mPresenter.detach();
+        }
 
         super.onDestroy();
     }

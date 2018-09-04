@@ -10,12 +10,12 @@ import com.chocfun.baselib.mvp.BaseFragment;
 @Route(path = ModuleARouterPath.FramgentA)
 public class FragmentA extends BaseFragment {
     @Override
-    protected int initView() {
+    public int getLayoutId() {
         return R.layout.modulea_fragment_a;
     }
 
     @Override
-    protected void initBaseData(@Nullable Bundle savedInstanceState) {
+    public void initData(@Nullable Bundle savedInstanceState) {
 
     }
 }

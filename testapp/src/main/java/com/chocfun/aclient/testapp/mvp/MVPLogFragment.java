@@ -25,17 +25,12 @@ public class MVPLogFragment extends BaseMVPFragment<LogContracts.Presenter> impl
     }
 
     @Override
-    protected LogContracts.Presenter createPresenter() {
-        return LogMVPPresenter.newInstance();
-    }
-
-    @Override
-    protected void initMVPData(@Nullable Bundle savedInstanceState) {
+    public void initData(@Nullable Bundle savedInstanceState) {
         mGotoBtn.setText("跳转到Activity");
     }
 
     @Override
-    protected int initView() {
+    public int getLayoutId() {
         return R.layout.activity_mvp_activity;
     }
 

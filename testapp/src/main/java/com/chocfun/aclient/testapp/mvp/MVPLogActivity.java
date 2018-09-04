@@ -35,11 +35,6 @@ public class MVPLogActivity extends BaseMVPActivity<LogContracts.Presenter> impl
     }
 
     @Override
-    protected LogContracts.Presenter createPresenter() {
-        return LogMVPPresenter.newInstance();
-    }
-
-    @Override
     public void showSomething() {
         Toast.makeText(this, "showSomething", Toast.LENGTH_SHORT).show();
     }

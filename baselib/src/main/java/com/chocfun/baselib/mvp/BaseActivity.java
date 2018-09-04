@@ -22,21 +22,9 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
     private Unbinder mUnbinder;
     private final BehaviorSubject<RxLifecycleEvent> mBehaviorSubject = BehaviorSubject.create();
 
-//    /**
-//     * 在这里设置Activity对应的layout文件
-//     */
-//    public abstract int initView();
-//
-//    /**
-//     * 设置layout id 后的初始化工作在这里进行
-//     */
-//    public abstract void initBaseData(@Nullable Bundle savedInstanceState);
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mBehaviorSubject.onNext(RxLifecycleEvent.CREATE);
 
         try {
             int layoutId = getLayoutId();
@@ -50,9 +38,21 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
             e.printStackTrace();
         }
 
+        // 设置Dagger Component
+        setupDagger2Component();
+
+        // 初始化数据之前的一些设置
         beforeInitData(savedInstanceState);
 
+        // 初始化数据
         initData(savedInstanceState);
+
+        mBehaviorSubject.onNext(RxLifecycleEvent.CREATE);
+    }
+
+    @Override
+    public void setupDagger2Component() {
+
     }
 
     protected void beforeInitData(Bundle saveInstanceState) {

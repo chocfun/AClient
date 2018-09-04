@@ -14,19 +14,18 @@ import butterknife.OnClick;
 @Route(path = ModuleARouterPath.MainActivity)
 public class MainActivity extends BaseActivity {
 
+    @OnClick(R2.id.open_module_b_btn)
+    public void openModuleB() {
+        RouterHelper.startModuleBActivity(200, "ModuleAActivity");
+    }
 
     @Override
-    public int initView() {
+    public int getLayoutId() {
         return R.layout.modulea_activity_main;
     }
 
     @Override
-    public void initBaseData(@Nullable Bundle savedInstanceState) {
+    public void initData(@Nullable Bundle savedInstanceState) {
 
-    }
-
-    @OnClick(R2.id.open_module_b_btn)
-    public void openModuleB() {
-        RouterHelper.startModuleBActivity(200, "ModuleAActivity");
     }
 }

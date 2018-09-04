@@ -3,7 +3,7 @@ package com.chocfun.baselib.mvp;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-public interface IBaseActivity {
+public interface IBaseFragment {
     /**
      * 提供布局文件ID
      * @return 页面布局文件ID
@@ -15,9 +15,4 @@ public interface IBaseActivity {
      * @param savedInstanceState savedInstanceState
      */
     void initData(@Nullable Bundle savedInstanceState);
-
-    /**
-     * 设置Dagger Component
-     */
-    void setupDagger2Component();
 }

@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.chocfun.aclient.testapp.R;
+import com.chocfun.aclient.testapp.dagger2.di.DaggerMainComponent;
+import com.chocfun.aclient.testapp.dagger2.di.MainModule;
 import com.chocfun.baselib.mvp.BaseMVPActivity;
 
 public class Dagger2Activity extends BaseMVPActivity<Dagger2Contracts.Presenter> implements Dagger2Contracts.View {
@@ -13,13 +15,17 @@ public class Dagger2Activity extends BaseMVPActivity<Dagger2Contracts.Presenter>
         return R.layout.activity_dagger2;
     }
 
+
     @Override
-    public void initData(@Nullable Bundle savedInstanceState) {
-        mPresenter.print();
+    public void setupDagger2Component() {
+        DaggerMainComponent.builder()
+                .mainModule(new MainModule(this))
+                .build()
+                .inject(this);
     }
 
     @Override
-    protected Dagger2Contracts.Presenter createPresenter() {
-        return new Dagger2Presenter();
+    public void initData(@Nullable Bundle savedInstanceState) {
+        getPresenter().print();
     }
 }

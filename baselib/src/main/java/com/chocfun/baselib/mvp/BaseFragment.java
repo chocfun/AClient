@@ -21,14 +21,11 @@ import io.reactivex.subjects.BehaviorSubject;
  * 封装Fragment基类
  *
  */
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment extends Fragment implements IBaseFragment {
 
     // ButterKnife解除绑定
     private Unbinder mUnbinder;
     private final BehaviorSubject<RxLifecycleEvent> mBehaviorSubject = BehaviorSubject.create();
-
-    protected abstract int initView();
-    protected abstract void initBaseData(@Nullable Bundle savedInstanceState);
 
     @Override
     public void onAttach(Context context) {
@@ -47,15 +44,21 @@ public abstract class BaseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(initView(), container, false);
+        View view = inflater.inflate(getLayoutId(), container, false);
 
         mUnbinder = ButterKnife.bind(this, view);
 
-        initBaseData(savedInstanceState);
+        beforeInitData();
+
+        initData(savedInstanceState);
 
         mBehaviorSubject.onNext(RxLifecycleEvent.CREATE_VIEW);
 
         return view;
+    }
+
+    protected void beforeInitData() {
+
     }
 
     @Override

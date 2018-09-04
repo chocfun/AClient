@@ -8,7 +8,7 @@ public interface Dagger2Contracts {
 
     }
 
-    interface Presenter extends IBasePresenter<View> {
+    interface Presenter extends IBasePresenter {
         void print();
     }
 }

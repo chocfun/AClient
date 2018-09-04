@@ -12,11 +12,15 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 
 public class LogMVPPresenter extends BaseMVPPresenter<LogContracts.View> implements LogContracts.Presenter {
-    public static LogMVPPresenter newInstance() {
-        return new LogMVPPresenter();
+    public static LogMVPPresenter newInstance(LogContracts.View view) {
+        return new LogMVPPresenter(view);
     }
 
     private Disposable mDisposable;
+
+    public LogMVPPresenter(LogContracts.View view) {
+        super(view);
+    }
 
     @Override
     public void doSomething() {

@@ -8,7 +8,7 @@ public interface LogContracts {
         void showSomething();
     }
 
-    interface Presenter extends IBasePresenter<View> {
+    interface Presenter extends IBasePresenter {
         void doSomething();
         void doUntilStop();
         void doUntilDestroy();

@@ -4,9 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.EditText;
 
-import com.chocfun.aclient.testapp.R;
 import com.chocfun.baselib.log.LogHelper;
-import com.chocfun.baselib.mvp.BaseActivity;
+import com.chocfun.baselib.ui.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;

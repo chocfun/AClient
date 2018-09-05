@@ -6,19 +6,19 @@ import android.os.Bundle;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.chocfun.aclient.commonservice.router.RouterHelper;
 import com.chocfun.baselib.log.LogHelper;
-import com.chocfun.baselib.mvp.BaseActivity;
+import com.chocfun.baselib.ui.BaseActivity;
 
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
 
     @Override
-    public int initView() {
+    public int getLayoutId() {
         return R.layout.activity_main;
     }
 
     @Override
-    public void initBaseData(@Nullable Bundle savedInstanceState) {
+    public void initData(@Nullable Bundle savedInstanceState) {
         LogHelper.i("initBaseData");
         initRouter();
     }

@@ -6,7 +6,7 @@ import android.os.Bundle;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.chocfun.aclient.commonservice.router.RouterHelper;
 import com.chocfun.aclient.commonservice.router.routerpath.ModuleARouterPath;
-import com.chocfun.baselib.mvp.BaseActivity;
+import com.chocfun.baselib.ui.BaseActivity;
 
 import butterknife.OnClick;
 

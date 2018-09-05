@@ -1,4 +1,4 @@
-package com.chocfun.baselib.mvp;
+package com.chocfun.baselib.ui;
 
 import android.content.Context;
 import android.os.Bundle;

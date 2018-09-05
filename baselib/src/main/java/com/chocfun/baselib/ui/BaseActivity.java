@@ -1,4 +1,4 @@
-package com.chocfun.baselib.mvp;
+package com.chocfun.baselib.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,10 +16,11 @@ import io.reactivex.subjects.BehaviorSubject;
  * 封装Activity基类
  *
  */
-public abstract class BaseActivity extends AppCompatActivity implements IBaseActivity {
+public abstract class BaseActivity extends AppCompatActivity implements IBaseActivity ,IBaseView {
 
     // ButterKnife解除绑定
     private Unbinder mUnbinder;
+    // 生命周期监听
     private final BehaviorSubject<RxLifecycleEvent> mBehaviorSubject = BehaviorSubject.create();
 
     @Override
@@ -100,11 +101,22 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
         super.onDestroy();
     }
 
-    public <T> ObservableTransformer<T, T> bindUtil(Class<T> streamType, RxLifecycleEvent lifecycle) {
+    private <T> ObservableTransformer<T, T> bindUtil(Class<T> streamType, RxLifecycleEvent lifecycle) {
         return RxLifecycleUtil.bindUtil(streamType, mBehaviorSubject, lifecycle);
     }
 
-    public <T> ObservableTransformer<T, T> bindUtil(Class<T> streamType) {
+    private <T> ObservableTransformer<T, T> bindUtil(Class<T> streamType) {
         return bindUtil(streamType, RxLifecycleEvent.DESTROY);
+    }
+
+
+    @Override
+    public <T> ObservableTransformer<T, T> bindToLifecycle(Class<T> streamType, RxLifecycleEvent lifecycle) {
+        return bindUtil(streamType, lifecycle);
+    }
+
+    @Override
+    public <T> ObservableTransformer<T, T> bindToLifecycle(Class<T> streamType) {
+        return bindUtil(streamType);
     }
 }

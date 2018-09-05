@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.chocfun.aclient.testapp.R;
-import com.chocfun.baselib.mvp.BaseActivity;
+import com.chocfun.baselib.ui.BaseActivity;
 
 public class LogFragmentActivity extends BaseActivity {
 

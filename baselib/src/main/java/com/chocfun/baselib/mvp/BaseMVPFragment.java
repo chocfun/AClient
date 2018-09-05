@@ -1,10 +1,10 @@
 package com.chocfun.baselib.mvp;
 
-import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.chocfun.baselib.rxlifecycle.RxLifecycleEvent;
-import com.chocfun.baselib.util.PreconditionUtil;
+import com.chocfun.baselib.ui.BaseFragment;
+import com.chocfun.baselib.ui.IBaseView;
 
 import javax.inject.Inject;
 

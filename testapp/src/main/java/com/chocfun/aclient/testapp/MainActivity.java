@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.chocfun.aclient.testapp.mvp.MVPLogActivity;
-import com.chocfun.baselib.mvp.BaseActivity;
+import com.chocfun.baselib.ui.BaseActivity;
 
 import butterknife.OnClick;
 

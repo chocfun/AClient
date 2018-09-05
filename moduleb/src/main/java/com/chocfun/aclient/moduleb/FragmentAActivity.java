@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.chocfun.aclient.commonservice.router.RouterHelper;
-import com.chocfun.baselib.mvp.BaseActivity;
+import com.chocfun.baselib.ui.BaseActivity;
 
 public class FragmentAActivity extends BaseActivity {
     public static void start(Context context) {

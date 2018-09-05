@@ -27,6 +27,9 @@
 
         <activity android:name=".dagger2.Dagger2Activity"
             android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".rxlifecycle.RxLifecycleActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

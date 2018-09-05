@@ -6,7 +6,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.chocfun.baselib.log.LogHelper;
-import com.chocfun.baselib.mvp.BaseActivity;
+import com.chocfun.baselib.ui.BaseActivity;
 import com.chocfun.baselib.util.OneTapUtil;
 import com.chocfun.baselib.util.XTextUtil;
 
@@ -37,12 +37,12 @@ public class Retrofit2Activity extends BaseActivity {
     private ApiService mApiService;
 
     @Override
-    public int initView() {
+    public int getLayoutId() {
         return R.layout.activity_retrofit2;
     }
 
     @Override
-    public void initBaseData(@Nullable Bundle savedInstanceState) {
+    public void initData(@Nullable Bundle savedInstanceState) {
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(getUrl())
                 .build();

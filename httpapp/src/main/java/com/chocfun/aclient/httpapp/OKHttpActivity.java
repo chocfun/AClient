@@ -6,7 +6,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.chocfun.baselib.log.LogHelper;
-import com.chocfun.baselib.mvp.BaseActivity;
+import com.chocfun.baselib.ui.BaseActivity;
 import com.chocfun.baselib.util.OneTapUtil;
 import com.chocfun.baselib.util.XTextUtil;
 
@@ -36,12 +36,12 @@ public class OKHttpActivity extends BaseActivity {
     private Disposable mDisposable;
 
     @Override
-    public int initView() {
+    public int getLayoutId() {
         return R.layout.activity_okhttp;
     }
 
     @Override
-    public void initBaseData(@Nullable Bundle savedInstanceState) {
+    public void initData(@Nullable Bundle savedInstanceState) {
         // 创建 OkHttpClient 对象
         mOkHttpClient = new OkHttpClient();
     }

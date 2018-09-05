@@ -3,6 +3,7 @@ package com.chocfun.baselib.mvp;
 import android.support.annotation.NonNull;
 
 import com.chocfun.baselib.log.LogHelper;
+import com.chocfun.baselib.ui.IBaseView;
 import com.chocfun.baselib.util.PreconditionUtil;
 
 public abstract class BaseMVPPresenter<V extends IBaseView> implements IBasePresenter {

@@ -1,4 +1,4 @@
-package com.chocfun.baselib.mvp;
+package com.chocfun.baselib.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

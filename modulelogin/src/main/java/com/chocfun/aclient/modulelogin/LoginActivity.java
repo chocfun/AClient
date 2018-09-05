@@ -9,7 +9,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.chocfun.aclient.commonservice.constants.LoginInfo;
 import com.chocfun.aclient.commonservice.router.routerpath.LoginRouterPath;
 import com.chocfun.baselib.log.LogHelper;
-import com.chocfun.baselib.mvp.BaseActivity;
+import com.chocfun.baselib.ui.BaseActivity;
 import com.chocfun.baselib.util.XTextUtil;
 
 import butterknife.BindView;

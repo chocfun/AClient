@@ -7,7 +7,7 @@ import android.widget.TextView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.chocfun.aclient.commonservice.router.RouterHelper;
 import com.chocfun.aclient.commonservice.router.routerpath.ModuleBRouterPath;
-import com.chocfun.baselib.mvp.BaseActivity;
+import com.chocfun.baselib.ui.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;

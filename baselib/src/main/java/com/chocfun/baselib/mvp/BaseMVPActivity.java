@@ -4,13 +4,15 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.chocfun.baselib.rxlifecycle.RxLifecycleEvent;
+import com.chocfun.baselib.ui.BaseActivity;
+import com.chocfun.baselib.ui.IBaseView;
 import com.chocfun.baselib.util.PreconditionUtil;
 
 import javax.inject.Inject;
 
 import io.reactivex.ObservableTransformer;
 
-public abstract class BaseMVPActivity<P extends IBasePresenter> extends BaseActivity implements IBaseView {
+public abstract class BaseMVPActivity<P extends IBasePresenter> extends BaseActivity {
 
     @Inject
     @Nullable
@@ -34,15 +36,5 @@ public abstract class BaseMVPActivity<P extends IBasePresenter> extends BaseActi
         }
 
         super.onDestroy();
-    }
-
-    @Override
-    public <T> ObservableTransformer<T, T> bindToLifecycle(Class<T> streamType, RxLifecycleEvent lifecycle) {
-        return bindUtil(streamType, lifecycle);
-    }
-
-    @Override
-    public <T> ObservableTransformer<T, T> bindToLifecycle(Class<T> streamType) {
-        return bindUtil(streamType);
     }
 }

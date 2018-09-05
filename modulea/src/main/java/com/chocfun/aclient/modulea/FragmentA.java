@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.chocfun.aclient.commonservice.router.routerpath.ModuleARouterPath;
-import com.chocfun.baselib.mvp.BaseFragment;
+import com.chocfun.baselib.ui.BaseFragment;
 
 @Route(path = ModuleARouterPath.FramgentA)
 public class FragmentA extends BaseFragment {

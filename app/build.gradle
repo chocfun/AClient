@@ -33,8 +33,10 @@ dependencies {
     androidTestImplementation "com.android.support.test:runner:$rootProject.testRunner"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.testEspressoCore"
     annotationProcessor rootProject.ext.dependencies.libButterKnifeCompiler
+
     implementation project(':commonservice')
-    implementation project(':modulea')
-    implementation project(':moduleb')
-    implementation project(':modulelogin')
+
+    runtimeOnly project(':modulea')
+    runtimeOnly project(':moduleb')
+    runtimeOnly project(':modulelogin')
 }

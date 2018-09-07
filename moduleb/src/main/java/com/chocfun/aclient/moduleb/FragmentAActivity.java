@@ -16,12 +16,12 @@ public class FragmentAActivity extends BaseActivity {
     }
 
     @Override
-    public int initView() {
+    public int getLayoutId() {
         return R.layout.moduleb_fragment_a;
     }
 
     @Override
-    public void initBaseData(@Nullable Bundle savedInstanceState) {
+    public void initData(@Nullable Bundle savedInstanceState) {
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.content_layout, RouterHelper.getFragmentA())

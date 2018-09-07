@@ -20,12 +20,12 @@ public class ModuleBActivity extends BaseActivity {
     TextView mParamsTV;
 
     @Override
-    public int initView() {
+    public int getLayoutId() {
         return R.layout.moduleb_activity_mobule_b;
     }
 
     @Override
-    public void initBaseData(@Nullable Bundle savedInstanceState) {
+    public void initData(@Nullable Bundle savedInstanceState) {
         int p1 = getIntent().getIntExtra("p1", 0);
         String p2 = getIntent().getStringExtra("p2");
 

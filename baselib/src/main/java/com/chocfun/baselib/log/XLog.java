@@ -9,6 +9,7 @@ public class XLog implements BaseLogStrategy {
     private @LogConstants.LogLevel
     int mLevel = LogConstants.DEBUG;
     private String mOriginalTAG;
+    private String mFileName;
     private String mClassName;
     private String mMethodName;
     private int mLineNumber;
@@ -112,12 +113,13 @@ public class XLog implements BaseLogStrategy {
     private String getMethodLog() {
         getMethodInfo(getTargetStackTraceElement());
 
-        return "(" + mClassName + ":" + mLineNumber + ") " + mMethodName;
+        return mClassName + " (" + mFileName + ":" + mLineNumber + ") " + mMethodName;
     }
 
 
     private void getMethodInfo(StackTraceElement sElements) {
-        mClassName = sElements.getFileName();
+        mFileName = sElements.getFileName();
+        mClassName = sElements.getClassName();
         mMethodName = sElements.getMethodName();
         mLineNumber = sElements.getLineNumber();
     }

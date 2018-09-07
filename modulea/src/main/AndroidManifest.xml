@@ -5,6 +5,11 @@
     <application
         android:allowBackup="true"
         android:supportsRtl="true">
+
+        <meta-data
+            android:value="ConfigModule"
+            android:name="com.chocfun.aclient.modulea.app.ModuleAConfiguration"/>
+
         <activity android:name=".MainActivity"/>
     </application>
 

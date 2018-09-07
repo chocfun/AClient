@@ -7,6 +7,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.util.Arrays;
 
 public class LogConstants {
+    public static boolean isDebug;
+
     public static final int VERBOSE = 0;
     public static final int DEBUG = 1;
     public static final int INFO = 2;

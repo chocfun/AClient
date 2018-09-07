@@ -25,12 +25,12 @@ public class LoginActivity extends BaseActivity {
     private Bundle mRouterBundle;
 
     @Override
-    public int initView() {
+    public int getLayoutId() {
         return R.layout.login_activity_login;
     }
 
     @Override
-    public void initBaseData(@Nullable Bundle savedInstanceState) {
+    public void initData(@Nullable Bundle savedInstanceState) {
         mRouterPath = getIntent().getStringExtra("routerPath");
         mRouterBundle = getIntent().getBundleExtra("routerBundle");
 

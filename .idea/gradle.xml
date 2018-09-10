@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/baselib" />
             <option value="$PROJECT_DIR$/commonservice" />
             <option value="$PROJECT_DIR$/httpapp" />
+            <option value="$PROJECT_DIR$/modelservice" />
             <option value="$PROJECT_DIR$/modulea" />
             <option value="$PROJECT_DIR$/moduleb" />
             <option value="$PROJECT_DIR$/modulelogin" />

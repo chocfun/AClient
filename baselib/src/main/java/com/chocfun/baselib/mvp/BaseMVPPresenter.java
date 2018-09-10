@@ -74,6 +74,7 @@ public abstract class BaseMVPPresenter<V extends IBaseView> implements IBasePres
         return false;
     }
 
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventBusMessage(EventBusMessage message) {
 

@@ -1,10 +1,6 @@
 package com.chocfun.baselib.ui;
 
-import com.chocfun.baselib.rxlifecycle.RxLifecycleEvent;
+import com.chocfun.baselib.rxlifecycle.IRxLifecycle;
 
-import io.reactivex.ObservableTransformer;
-
-public interface IBaseView {
-    <T> ObservableTransformer<T, T> bindToLifecycle(Class<T> streamType, RxLifecycleEvent lifecycle);
-    <T> ObservableTransformer<T, T> bindToLifecycle(Class<T> streamType);
+public interface IBaseView extends IRxLifecycle {
 }

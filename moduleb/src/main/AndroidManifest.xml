@@ -1,6 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.chocfun.aclient.moduleb" >
     <application>
+
+        <meta-data
+            android:value="ConfigModule"
+            android:name="com.chocfun.aclient.moduleb.app.ModuleBConfiguration"/>
+
         <activity android:name=".ModuleBActivity"/>
         <activity android:name=".FragmentAActivity"/>
     </application>

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.chocfun.baselib.rxlifecycle.IRxLifecycle;
 import com.chocfun.baselib.rxlifecycle.RxLifecycleEvent;
 import com.chocfun.baselib.rxlifecycle.RxLifecycleUtil;
 
@@ -21,7 +22,7 @@ import io.reactivex.subjects.BehaviorSubject;
  * 封装Fragment基类
  *
  */
-public abstract class BaseFragment extends Fragment implements IBaseFragment {
+public abstract class BaseFragment extends Fragment implements IBaseFragment, IRxLifecycle {
 
     // ButterKnife解除绑定
     private Unbinder mUnbinder;
@@ -115,11 +116,13 @@ public abstract class BaseFragment extends Fragment implements IBaseFragment {
         mBehaviorSubject.onNext(RxLifecycleEvent.DETACH);
     }
 
-    public <T> ObservableTransformer<T, T> bindUtil(Class<T> streamType, RxLifecycleEvent lifecycle) {
+    @Override
+    public <T> ObservableTransformer<T, T> bindToLifecycle(Class<T> streamType, RxLifecycleEvent lifecycle) {
         return RxLifecycleUtil.bindUtil(streamType, mBehaviorSubject, lifecycle);
     }
 
-    public <T> ObservableTransformer<T, T> bindUtil(Class<T> streamType) {
-        return bindUtil(streamType, RxLifecycleEvent.DESTROY);
+    @Override
+    public <T> ObservableTransformer<T, T> bindToLifecycle(Class<T> streamType) {
+        return RxLifecycleUtil.bindUtil(streamType, mBehaviorSubject, RxLifecycleEvent.DESTROY);
     }
 }

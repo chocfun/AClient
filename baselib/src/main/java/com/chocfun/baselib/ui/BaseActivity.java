@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.chocfun.baselib.app.AppManager;
+import com.chocfun.baselib.rxlifecycle.IRxLifecycle;
 import com.chocfun.baselib.rxlifecycle.RxLifecycleEvent;
 import com.chocfun.baselib.rxlifecycle.RxLifecycleUtil;
 
@@ -16,7 +18,7 @@ import io.reactivex.subjects.BehaviorSubject;
  * 封装Activity基类
  *
  */
-public abstract class BaseActivity extends AppCompatActivity implements IBaseActivity ,IBaseView {
+public abstract class BaseActivity extends AppCompatActivity implements IBaseActivity ,IBaseView, IRxLifecycle {
 
     // ButterKnife解除绑定
     private Unbinder mUnbinder;
@@ -47,6 +49,9 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
 
         // 初始化数据
         initData(savedInstanceState);
+
+        // 统一管理Activity
+        AppManager.getInstance().addActivity(this);
 
         mBehaviorSubject.onNext(RxLifecycleEvent.CREATE);
     }
@@ -98,25 +103,18 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
 
         mBehaviorSubject.onNext(RxLifecycleEvent.DESTROY);
 
+        AppManager.getInstance().removeActivity(this);
+
         super.onDestroy();
     }
 
-    private <T> ObservableTransformer<T, T> bindUtil(Class<T> streamType, RxLifecycleEvent lifecycle) {
-        return RxLifecycleUtil.bindUtil(streamType, mBehaviorSubject, lifecycle);
-    }
-
-    private <T> ObservableTransformer<T, T> bindUtil(Class<T> streamType) {
-        return bindUtil(streamType, RxLifecycleEvent.DESTROY);
-    }
-
-
     @Override
     public <T> ObservableTransformer<T, T> bindToLifecycle(Class<T> streamType, RxLifecycleEvent lifecycle) {
-        return bindUtil(streamType, lifecycle);
+        return RxLifecycleUtil.bindUtil(streamType, mBehaviorSubject, lifecycle);
     }
 
     @Override
     public <T> ObservableTransformer<T, T> bindToLifecycle(Class<T> streamType) {
-        return bindUtil(streamType);
+        return RxLifecycleUtil.bindUtil(streamType, mBehaviorSubject, RxLifecycleEvent.DESTROY);
     }
 }

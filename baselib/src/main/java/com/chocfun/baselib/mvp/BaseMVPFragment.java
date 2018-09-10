@@ -33,14 +33,4 @@ public abstract class BaseMVPFragment<P extends IBasePresenter> extends BaseFrag
 
         super.onDestroy();
     }
-
-    @Override
-    public <T> ObservableTransformer<T, T> bindToLifecycle(Class<T> streamType, RxLifecycleEvent lifecycle) {
-        return bindUtil(streamType, lifecycle);
-    }
-
-    @Override
-    public <T> ObservableTransformer<T, T> bindToLifecycle(Class<T> streamType) {
-        return bindUtil(streamType);
-    }
 }

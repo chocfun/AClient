@@ -15,5 +15,4 @@ public enum RxLifecycleEvent {
     DESTROY_VIEW,
     DESTROY,
     DETACH
-
 }

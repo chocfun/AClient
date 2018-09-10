@@ -18,6 +18,11 @@
 
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".image.ImageActivity"
             android:screenOrientation="portrait">
@@ -34,11 +39,6 @@
 
         <activity android:name=".dagger2.Dagger2Activity"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".rxlifecycle.RxLifecycleActivity"
             android:screenOrientation="portrait">

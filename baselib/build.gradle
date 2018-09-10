@@ -63,4 +63,6 @@ dependencies {
     // Dagger2
     api rootProject.ext.dependencies.libDagger2
     annotationProcessor rootProject.ext.dependencies.libDagger2Compiler
+    // EventBus
+    api rootProject.ext.dependencies.libEventBus
 }

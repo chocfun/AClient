@@ -9,9 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.chocfun.baselib.eventbus.EventBusMessage;
+import com.chocfun.baselib.eventbus.EventBusUtil;
+import com.chocfun.baselib.eventbus.IEventBus;
 import com.chocfun.baselib.rxlifecycle.IRxLifecycle;
 import com.chocfun.baselib.rxlifecycle.RxLifecycleEvent;
 import com.chocfun.baselib.rxlifecycle.RxLifecycleUtil;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -22,7 +28,7 @@ import io.reactivex.subjects.BehaviorSubject;
  * 封装Fragment基类
  *
  */
-public abstract class BaseFragment extends Fragment implements IBaseFragment, IRxLifecycle {
+public abstract class BaseFragment extends Fragment implements IBaseFragment, IRxLifecycle, IEventBus {
 
     // ButterKnife解除绑定
     private Unbinder mUnbinder;
@@ -52,6 +58,11 @@ public abstract class BaseFragment extends Fragment implements IBaseFragment, IR
         beforeInitData();
 
         initData(savedInstanceState);
+
+        // 注册EventBus
+        if (useEventBus()) {
+            EventBusUtil.register(this);
+        }
 
         mBehaviorSubject.onNext(RxLifecycleEvent.CREATE_VIEW);
 
@@ -94,6 +105,11 @@ public abstract class BaseFragment extends Fragment implements IBaseFragment, IR
     public void onDestroyView() {
         super.onDestroyView();
 
+        // 解除EventBus注册
+        if (useEventBus()) {
+            EventBusUtil.unregister(this);
+        }
+
         mBehaviorSubject.onNext(RxLifecycleEvent.DESTROY_VIEW);
     }
 
@@ -124,5 +140,15 @@ public abstract class BaseFragment extends Fragment implements IBaseFragment, IR
     @Override
     public <T> ObservableTransformer<T, T> bindToLifecycle(Class<T> streamType) {
         return RxLifecycleUtil.bindUtil(streamType, mBehaviorSubject, RxLifecycleEvent.DESTROY);
+    }
+
+    @Override
+    public boolean useEventBus() {
+        return false;
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventBusMessage(EventBusMessage message) {
+
     }
 }

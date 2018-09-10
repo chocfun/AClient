@@ -5,9 +5,15 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.chocfun.baselib.app.AppManager;
+import com.chocfun.baselib.eventbus.EventBusMessage;
+import com.chocfun.baselib.eventbus.EventBusUtil;
+import com.chocfun.baselib.eventbus.IEventBus;
 import com.chocfun.baselib.rxlifecycle.IRxLifecycle;
 import com.chocfun.baselib.rxlifecycle.RxLifecycleEvent;
 import com.chocfun.baselib.rxlifecycle.RxLifecycleUtil;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -18,7 +24,7 @@ import io.reactivex.subjects.BehaviorSubject;
  * 封装Activity基类
  *
  */
-public abstract class BaseActivity extends AppCompatActivity implements IBaseActivity ,IBaseView, IRxLifecycle {
+public abstract class BaseActivity extends AppCompatActivity implements IBaseActivity ,IBaseView, IRxLifecycle, IEventBus {
 
     // ButterKnife解除绑定
     private Unbinder mUnbinder;
@@ -52,6 +58,11 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
 
         // 统一管理Activity
         AppManager.getInstance().addActivity(this);
+
+        // 注册EventBus
+        if (useEventBus()) {
+            EventBusUtil.register(this);
+        }
 
         mBehaviorSubject.onNext(RxLifecycleEvent.CREATE);
     }
@@ -101,6 +112,11 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
             mUnbinder = null;
         }
 
+        // 解除EventBus注册
+        if (useEventBus()) {
+            EventBusUtil.unregister(this);
+        }
+
         mBehaviorSubject.onNext(RxLifecycleEvent.DESTROY);
 
         AppManager.getInstance().removeActivity(this);
@@ -116,5 +132,15 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
     @Override
     public <T> ObservableTransformer<T, T> bindToLifecycle(Class<T> streamType) {
         return RxLifecycleUtil.bindUtil(streamType, mBehaviorSubject, RxLifecycleEvent.DESTROY);
+    }
+
+    @Override
+    public boolean useEventBus() {
+        return false;
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventBusMessage(EventBusMessage message) {
+
     }
 }

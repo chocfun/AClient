@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.chocfun.aclient.testapp.dagger2.Dagger2Activity;
 import com.chocfun.aclient.testapp.mvp.MVPLogActivity;
+import com.chocfun.aclient.testapp.rxlifecycle.RxLifecycleActivity;
 import com.chocfun.baselib.ui.BaseActivity;
 
 import butterknife.OnClick;
@@ -28,6 +30,16 @@ public class MainActivity extends BaseActivity {
     @OnClick(R.id.log_btn)
     public void log() {
         start(LogActivity.class);
+    }
+
+    @OnClick(R.id.dagger2_btn)
+    public void dagger2() {
+        start(Dagger2Activity.class);
+    }
+
+    @OnClick(R.id.rx_lifecycle_btn)
+    public void rxLifecycle() {
+        start(RxLifecycleActivity.class);
     }
 
 

@@ -10,11 +10,8 @@ import org.aspectj.lang.annotation.Pointcut;
 @Aspect
 public class TimeTraceAspect {
 
-    @Pointcut("execution(@com.chocfun.baselib.aspect.trace.TimeTrace * *(..))")
-    public void onTimeTrace() {}
-
-    @Around("onTimeTrace()")
-    public Object dealPoint(ProceedingJoinPoint joinPoint) throws Throwable {
+    @Around("execution(@com.chocfun.baselib.aspect.trace.TimeTrace * *(..))")
+    public Object doTimeTrace(ProceedingJoinPoint joinPoint) throws Throwable {
         // 方法执行前先记录时间
         long start = System.currentTimeMillis();
 

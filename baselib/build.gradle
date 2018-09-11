@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.hujiang.android-aspectjx'
 
 android {
     compileSdkVersion 27
@@ -65,4 +66,7 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies.libDagger2Compiler
     // EventBus
     api rootProject.ext.dependencies.libEventBus
+
+    implementation rootProject.ext.dependencies.libAspectJrt
 }
+

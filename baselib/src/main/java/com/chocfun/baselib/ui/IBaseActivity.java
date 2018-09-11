@@ -1,6 +1,7 @@
 package com.chocfun.baselib.ui;
 
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 
 public interface IBaseActivity {
@@ -8,7 +9,7 @@ public interface IBaseActivity {
      * 提供布局文件ID
      * @return 页面布局文件ID
      */
-    int getLayoutId();
+    @LayoutRes int getLayoutId();
 
     /**
      * 初始化数据

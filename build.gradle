@@ -12,6 +12,8 @@ buildscript {
         classpath 'com.android.tools.build:gradle:3.1.4'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         classpath 'com.jakewharton:butterknife-gradle-plugin:8.4.0'
+        classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.0'
+        classpath fileTree(dir:'plugins', include:['*.jar'])
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -54,6 +56,8 @@ ext {
     arouterCompilerVersion = "1.2.1"
     dagger2Verstion = "2.4"
     eventBusVersion = "3.1.1"
+    aspectJVersion = "1.8.1"
+    aspectJrtVersion = "1.8.9"
 
     dependencies = [
             libButterKnife            : "com.jakewharton:butterknife:$butterknifeVersion",
@@ -78,6 +82,9 @@ ext {
             libDagger2 : "com.google.dagger:dagger:$dagger2Verstion",
             libDagger2Compiler : "com.google.dagger:dagger-compiler:$dagger2Verstion",
 
-            libEventBus : "org.greenrobot:eventbus:$eventBusVersion"
+            libEventBus : "org.greenrobot:eventbus:$eventBusVersion",
+
+            libAspectJ : "org.aspectj:aspectjrt:$aspectJVersion",
+            libAspectJrt : "org.aspectj:aspectjrt:$aspectJrtVersion"
     ]
 }

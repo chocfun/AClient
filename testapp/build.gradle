@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.hujiang.android-aspectjx'
 
 android {
     compileSdkVersion 27
@@ -43,4 +44,6 @@ dependencies {
 
     implementation project(':baselib')
     annotationProcessor rootProject.ext.dependencies.libDagger2Compiler
+
+    implementation rootProject.ext.dependencies.libAspectJrt
 }

@@ -16,6 +16,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
+@SuppressWarnings("CheckResult")
 public class RxLifecycleActivity extends BaseActivity {
     @Override
     public int getLayoutId() {

@@ -7,6 +7,9 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 
+/**
+ * 时间监控注解 {@link TimeTrace} AOP实现
+ */
 @Aspect
 public class TimeTraceAspect {
 

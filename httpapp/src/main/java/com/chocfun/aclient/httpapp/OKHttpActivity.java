@@ -5,9 +5,9 @@ import android.support.annotation.Nullable;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.chocfun.baselib.aspect.singleclick.SingleClick;
 import com.chocfun.baselib.log.LogHelper;
 import com.chocfun.baselib.ui.BaseActivity;
-import com.chocfun.baselib.util.OneTapUtil;
 import com.chocfun.baselib.util.XTextUtil;
 
 import java.io.IOException;
@@ -51,10 +51,9 @@ public class OKHttpActivity extends BaseActivity {
         return XTextUtil.isEmpty(url) ? "http://www.baidu.com" : url;
     }
 
+    @SingleClick(id = R.id.ok_http_get_btn)
     @OnClick(R.id.ok_http_get_btn)
     public void okHttpGet() {
-        if (OneTapUtil.checkInexact(R.id.ok_http_get_btn)) return;
-
         LogHelper.d("OKHttp Get :");
 
         Request.Builder builder = new Request.Builder().url(getUrl());
@@ -114,10 +113,9 @@ public class OKHttpActivity extends BaseActivity {
         return buffer.toString();
     }
 
+    @SingleClick(id = R.id.ok_http_post_btn)
     @OnClick(R.id.ok_http_post_btn)
     public void okHttpPost() {
-        if (OneTapUtil.checkInexact(R.id.ok_http_post_btn)) return;
-
         LogHelper.d("okHttpPost");
 
         FormBody formBody = new FormBody.Builder()

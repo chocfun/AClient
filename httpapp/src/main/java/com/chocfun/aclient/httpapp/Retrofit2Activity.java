@@ -5,9 +5,9 @@ import android.support.annotation.Nullable;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.chocfun.baselib.aspect.singleclick.SingleClick;
 import com.chocfun.baselib.log.LogHelper;
 import com.chocfun.baselib.ui.BaseActivity;
-import com.chocfun.baselib.util.OneTapUtil;
 import com.chocfun.baselib.util.XTextUtil;
 
 import java.io.IOException;
@@ -64,10 +64,9 @@ public class Retrofit2Activity extends BaseActivity {
         return XTextUtil.isEmpty(url) ? "https://api.douban.com/" : url;
     }
 
+    @SingleClick(id = R.id.retrofit_get_btn)
     @OnClick(R.id.retrofit_get_btn)
     public void get() {
-        if (OneTapUtil.checkInexact(R.id.retrofit_get_btn)) return;
-
         Call<ResponseBody> call = mApiService.getBook(1220562);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -105,10 +104,9 @@ public class Retrofit2Activity extends BaseActivity {
         });
     }
 
+    @SingleClick(id = R.id.new_movies_btn)
     @OnClick(R.id.new_movies_btn)
     public void post() {
-        if (OneTapUtil.checkInexact(R.id.new_movies_btn)) return;
-
         Call<ResponseBody> call = mApiService.new_movies();
         call.enqueue(new Callback<ResponseBody>() {
             @Override

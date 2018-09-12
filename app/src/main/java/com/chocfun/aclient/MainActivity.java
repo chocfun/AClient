@@ -3,14 +3,10 @@ package com.chocfun.aclient;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
 
-import com.alibaba.android.arouter.launcher.ARouter;
-import com.chocfun.aclient.commonservice.eventbus.moduleb.ModuleBMessage;
 import com.chocfun.aclient.commonservice.router.RouterHelper;
 import com.chocfun.baselib.eventbus.EventBusMessage;
-import com.chocfun.baselib.eventbus.EventBusUtil;
 import com.chocfun.baselib.log.LogHelper;
 import com.chocfun.baselib.ui.BaseActivity;
-import com.chocfun.baselib.util.OneTapUtil;
 
 import butterknife.OnClick;
 

@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.chocfun.aclient.testapp.R;
+import com.chocfun.baselib.aspect.async.Async;
+import com.chocfun.baselib.aspect.singleclick.SingleClick;
 import com.chocfun.baselib.aspect.trace.TimeTrace;
 import com.chocfun.baselib.log.LogHelper;
 import com.chocfun.baselib.ui.BaseActivity;
@@ -33,6 +35,8 @@ public class AspectJActivity extends BaseActivity {
         doAsync();
     }
 
+    @Async
+    @TimeTrace
     private void doAsync() {
         LogHelper.i("doAsync : " + Thread.currentThread().getName());
     }
@@ -51,5 +55,17 @@ public class AspectJActivity extends BaseActivity {
             e.printStackTrace();
         }
         LogHelper.i("doTest 2");
+    }
+
+    @SingleClick(id = R.id.click_1_btn, interval = 5 * 1000)
+    @OnClick(R.id.click_1_btn)
+    public void click1() {
+        LogHelper.i("click 1");
+    }
+
+    @SingleClick(id = R.id.click_2_btn)
+    @OnClick(R.id.click_2_btn)
+    public void click2() {
+        LogHelper.i("click 2");
     }
 }

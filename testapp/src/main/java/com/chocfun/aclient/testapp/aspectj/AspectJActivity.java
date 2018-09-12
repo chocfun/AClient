@@ -39,6 +39,15 @@ public class AspectJActivity extends BaseActivity {
     @TimeTrace
     private void doAsync() {
         LogHelper.i("doAsync : " + Thread.currentThread().getName());
+
+        for (int i = 0; i < 10; i++) {
+            LogHelper.i("" + i + " " + Thread.currentThread().getName());
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @OnClick(R.id.test_btn)

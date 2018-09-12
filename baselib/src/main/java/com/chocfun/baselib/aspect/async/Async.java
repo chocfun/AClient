@@ -1,5 +1,7 @@
 package com.chocfun.baselib.aspect.async;
 
+import com.chocfun.baselib.rxlifecycle.IRxLifecycle;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

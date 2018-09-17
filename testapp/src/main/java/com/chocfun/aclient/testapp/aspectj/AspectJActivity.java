@@ -8,9 +8,16 @@ import com.chocfun.baselib.aspect.async.Async;
 import com.chocfun.baselib.aspect.singleclick.SingleClick;
 import com.chocfun.baselib.aspect.trace.TimeTrace;
 import com.chocfun.baselib.log.LogHelper;
+import com.chocfun.baselib.rxlifecycle.IRxLifecycle;
 import com.chocfun.baselib.ui.BaseActivity;
 
+import java.util.concurrent.TimeUnit;
+
 import butterknife.OnClick;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class AspectJActivity extends BaseActivity {
 
@@ -30,18 +37,77 @@ public class AspectJActivity extends BaseActivity {
         animal.fly();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (null != mDisposable) {
+            mDisposable.dispose();
+            mDisposable = null;
+        }
+    }
+
+    private Disposable mDisposable;
+    @SuppressWarnings("CheckResult")
+    @OnClick(R.id.d_async_btn)
+    public void dAsync() {
+        Observable.create(emitter -> {
+            try {
+                for (int i = 0; i < 10; i++) {
+                    LogHelper.i("++++++++++++++++++++++" + i);
+
+                    Thread.sleep(1000);
+                }
+            } catch (Exception e) {
+                LogHelper.e(e.getMessage());
+            }
+        })
+                .compose(bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
+
+        Observable.interval(1, TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aLong -> {
+                   LogHelper.i("------------------------" + aLong);
+                });
+    }
+
     @OnClick(R.id.async_btn)
     public void async() {
-        doAsync();
+        doAsync(this);
+    }
+
+    @OnClick(R.id.no_lifecycle_async_btn)
+    public void noLifecycleAsync() {
+        doNoLifecycleAsync();
     }
 
     @Async
     @TimeTrace
-    private void doAsync() {
+    private void doAsync(IRxLifecycle lifecycle) {
         LogHelper.i("doAsync : " + Thread.currentThread().getName());
 
         for (int i = 0; i < 10; i++) {
-            LogHelper.i("" + i + " " + Thread.currentThread().getName());
+            LogHelper.i("Async " + i + " " + Thread.currentThread().getName());
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Async
+    @TimeTrace
+    private void doNoLifecycleAsync() {
+        LogHelper.i("doNoLifecycleAsync : " + Thread.currentThread().getName());
+
+        for (int i = 0; i < 10; i++) {
+            LogHelper.i("Async no lifecycle " + i + " " + Thread.currentThread().getName());
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {

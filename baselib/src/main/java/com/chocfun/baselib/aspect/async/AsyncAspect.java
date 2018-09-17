@@ -1,11 +1,18 @@
 package com.chocfun.baselib.aspect.async;
 
+import android.os.Looper;
+
 import com.chocfun.baselib.log.LogHelper;
+import com.chocfun.baselib.rxlifecycle.IRxLifecycle;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
+
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -35,18 +42,45 @@ public class AsyncAspect {
      */
     @Around("execution(!synthetic * *(..)) && onAsyncMethod()")
     public void doAsync(final ProceedingJoinPoint joinPoint) throws Throwable {
-        Observable.create(new ObservableOnSubscribe<Object>() {
-            @Override
-            public void subscribe(ObservableEmitter<Object> emitter) throws Exception {
+        // 从切入点方法中提取出Lifecycle参数
+        Object[] objects = joinPoint.getArgs();
+        Object object = null;
+        if (null != objects && objects.length > 0) {
+            object = objects[0];
+        }
+        IRxLifecycle lifecycle = null;
+        if (null != object && object instanceof IRxLifecycle) {
+            lifecycle = (IRxLifecycle) object;
+        }
+
+        // 有lifecycle是，绑定生命周期
+        if (null == lifecycle) {
+            Observable.create(emitter -> {
+                Looper.prepare();
                 try {
-                     joinPoint.proceed();
+                    joinPoint.proceed();
                 } catch (Throwable throwable) {
                     LogHelper.e(throwable.getMessage());
                 }
-            }
-        })
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe();
+                Looper.loop();
+            })
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe();
+        } else {
+            Observable.create(emitter -> {
+                Looper.prepare();
+                try {
+                    joinPoint.proceed();
+                } catch (Throwable throwable) {
+                    LogHelper.e(throwable.getMessage());
+                }
+                Looper.loop();
+            })
+                    .compose(lifecycle.bindToLifecycle())
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe();
+        }
     }
 }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.chocfun.aclient.testapp.aspectj.AspectJActivity;
 import com.chocfun.aclient.testapp.dagger2.Dagger2Activity;
 import com.chocfun.aclient.testapp.mvp.MVPLogActivity;
 import com.chocfun.aclient.testapp.rxlifecycle.RxLifecycleActivity;
@@ -40,6 +41,11 @@ public class MainActivity extends BaseActivity {
     @OnClick(R.id.rx_lifecycle_btn)
     public void rxLifecycle() {
         start(RxLifecycleActivity.class);
+    }
+
+    @OnClick(R.id.aspect_btn)
+    public void aspest() {
+        start(AspectJActivity.class);
     }
 
 

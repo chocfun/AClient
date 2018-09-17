@@ -29,7 +29,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
     // ButterKnife解除绑定
     private Unbinder mUnbinder;
     // 生命周期监听
-    private final BehaviorSubject<RxLifecycleEvent> mBehaviorSubject = BehaviorSubject.create();
+    public final BehaviorSubject<RxLifecycleEvent> mBehaviorSubject = BehaviorSubject.create();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -125,13 +125,13 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
     }
 
     @Override
-    public <T> ObservableTransformer<T, T> bindToLifecycle(Class<T> streamType, RxLifecycleEvent lifecycle) {
-        return RxLifecycleUtil.bindUtil(streamType, mBehaviorSubject, lifecycle);
+    public <T> ObservableTransformer<T, T> bindToLifecycle(RxLifecycleEvent lifecycle) {
+        return RxLifecycleUtil.bindUtil(mBehaviorSubject, lifecycle);
     }
 
     @Override
-    public <T> ObservableTransformer<T, T> bindToLifecycle(Class<T> streamType) {
-        return RxLifecycleUtil.bindUtil(streamType, mBehaviorSubject, RxLifecycleEvent.DESTROY);
+    public <T> ObservableTransformer<T, T> bindToLifecycle() {
+        return RxLifecycleUtil.bindUtil(mBehaviorSubject, RxLifecycleEvent.DESTROY);
     }
 
     @Override

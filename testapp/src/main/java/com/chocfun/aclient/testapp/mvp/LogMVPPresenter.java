@@ -52,7 +52,7 @@ public class LogMVPPresenter extends BaseMVPPresenter<LogContracts.View> impleme
     @Override
     public void doUntilStop() {
         Observable.interval(1, TimeUnit.SECONDS)
-                .compose(mView.bindToLifecycle(Long.class, RxLifecycleEvent.STOP))
+                .compose(mView.bindToLifecycle(RxLifecycleEvent.STOP))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Long>() {
                     @Override
@@ -80,7 +80,7 @@ public class LogMVPPresenter extends BaseMVPPresenter<LogContracts.View> impleme
     @Override
     public void doUntilDestroy() {
         Observable.interval(1, TimeUnit.SECONDS)
-                .compose(mView.bindToLifecycle(Long.class))
+                .compose(mView.bindToLifecycle())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Long>() {
                     @Override

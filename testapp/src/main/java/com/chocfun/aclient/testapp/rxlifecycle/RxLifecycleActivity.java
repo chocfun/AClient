@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import com.chocfun.aclient.testapp.R;
 import com.chocfun.baselib.log.LogHelper;
 import com.chocfun.baselib.rxlifecycle.RxLifecycleEvent;
+import com.chocfun.baselib.rxlifecycle.RxLifecycleUtil;
 import com.chocfun.baselib.ui.BaseActivity;
 
 import java.util.concurrent.TimeUnit;
@@ -26,7 +27,9 @@ public class RxLifecycleActivity extends BaseActivity {
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
         Observable.interval(1, TimeUnit.SECONDS)
-                .compose(bindToLifecycle(Long.class))
+                .compose(bindToLifecycle())
+//                .compose(RxLifecycleUtil.bindUtil(Long.class, mBehaviorSubject, RxLifecycleEvent.STOP))
+//                .compose(RxLifecycleUtil.bindUtil(mBehaviorSubject, RxLifecycleEvent.STOP))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Long>() {
@@ -36,5 +39,7 @@ public class RxLifecycleActivity extends BaseActivity {
                     }
                 });
     }
+
+
 
 }

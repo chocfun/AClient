@@ -60,13 +60,13 @@ public abstract class BaseMVPPresenter<V extends IBaseView> implements IBasePres
     }
 
     @Override
-    public <T> ObservableTransformer<T, T> bindToLifecycle(Class<T> streamType, RxLifecycleEvent lifecycle) {
-        return RxLifecycleUtil.bindUtil(streamType, mBehaviorSubject, lifecycle);
+    public <T> ObservableTransformer<T, T> bindToLifecycle(RxLifecycleEvent lifecycle) {
+        return RxLifecycleUtil.bindUtil(mBehaviorSubject, lifecycle);
     }
 
     @Override
-    public <T> ObservableTransformer<T, T> bindToLifecycle(Class<T> streamType) {
-        return RxLifecycleUtil.bindUtil(streamType, mBehaviorSubject, RxLifecycleEvent.DETACH);
+    public <T> ObservableTransformer<T, T> bindToLifecycle() {
+        return RxLifecycleUtil.bindUtil(mBehaviorSubject, RxLifecycleEvent.DETACH);
     }
 
     @Override

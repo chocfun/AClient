@@ -46,6 +46,9 @@
         <activity android:name=".aspectj.AspectJActivity"
             android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".TestActivity"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

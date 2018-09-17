@@ -1,5 +1,7 @@
 package com.chocfun.baselib.rxlifecycle;
 
+import com.chocfun.baselib.log.LogHelper;
+
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.ObservableTransformer;
@@ -37,6 +39,7 @@ public class RxLifecycleUtil {
         return new ObservableTransformer<T, T>() {
             @Override
             public ObservableSource<T> apply(Observable<T> upstream) {
+                LogHelper.w("apply : " + upstream.toString());
                 return upstream.takeUntil(filter);
             }
         };

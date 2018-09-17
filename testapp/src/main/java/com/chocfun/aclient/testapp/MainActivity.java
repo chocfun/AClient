@@ -44,8 +44,13 @@ public class MainActivity extends BaseActivity {
     }
 
     @OnClick(R.id.aspect_btn)
-    public void aspest() {
+    public void aspect() {
         start(AspectJActivity.class);
+    }
+
+    @OnClick(R.id.test_btn)
+    public void test() {
+        start(TestActivity.class);
     }
 
 

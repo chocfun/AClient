@@ -15,8 +15,13 @@ import java.util.concurrent.TimeUnit;
 
 import butterknife.OnClick;
 import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class AspectJActivity extends BaseActivity {
@@ -41,39 +46,90 @@ public class AspectJActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
 
-        if (null != mDisposable) {
-            mDisposable.dispose();
-            mDisposable = null;
+        LogHelper.w("onDestroy");
+
+        if (null != mDisposables && !mDisposables.isDisposed()) {
+            mDisposables.dispose();
+            mDisposables = null;
         }
     }
 
-    private Disposable mDisposable;
-    @SuppressWarnings("CheckResult")
+    private CompositeDisposable mDisposables = new CompositeDisposable();
+//    @SuppressWarnings("CheckResult")
+    private int mIndex = 0;
     @OnClick(R.id.d_async_btn)
     public void dAsync() {
-        Observable.create(emitter -> {
-            try {
+        Observable<Integer> observable = Observable.create(new ObservableOnSubscribe<Integer>() {
+            @Override
+            public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
                 for (int i = 0; i < 10; i++) {
-                    LogHelper.i("++++++++++++++++++++++" + i);
-
-                    Thread.sleep(1000);
+                    emitter.onNext(i);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (Exception e) {
+                        LogHelper.e(e.toString());
+                    }
+                    LogHelper.i("++++++++++ " + i + " " + Thread.currentThread().getName());
                 }
-            } catch (Exception e) {
-                LogHelper.e(e.getMessage());
             }
         })
-                .compose(bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe();
+                .onTerminateDetach();
+        observable.onTerminateDetach()
+                .subscribe(new Observer<Integer>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                LogHelper.i("onSubscribe : " + d.toString());
+                if (null != mDisposables && !mDisposables.isDisposed()) {
+                    mDisposables.add(d);
+                }
+            }
 
-        Observable.interval(1, TimeUnit.SECONDS)
-                .compose(bindToLifecycle())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(aLong -> {
-                   LogHelper.i("------------------------" + aLong);
-                });
+            @Override
+            public void onNext(Integer integer) {
+                LogHelper.i("onNext : " + integer);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                LogHelper.e("onError : " + e.toString());
+            }
+
+            @Override
+            public void onComplete() {
+                LogHelper.i("onComplete : ");
+            }
+        });
+
+//        Observable.interval(1, TimeUnit.SECONDS)
+////                .compose(bindToLifecycle())
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Observer<Long>() {
+//                    @Override
+//                    public void onSubscribe(Disposable d) {
+//                        LogHelper.i("onSubscribe");
+//                        if (null != mDisposables && !mDisposables.isDisposed()) {
+//                            mDisposables.add(d);
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onNext(Long aLong) {
+//                        LogHelper.i("onNext : " + aLong);
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        LogHelper.i("onError : " + e.toString());
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//                        LogHelper.i("onComplete");
+//                    }
+//                });
     }
 
     @OnClick(R.id.async_btn)

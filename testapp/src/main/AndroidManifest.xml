@@ -46,7 +46,7 @@
         <activity android:name=".aspectj.AspectJActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".TestActivity"
+        <activity android:name=".LeakCanaryActivity"
             android:screenOrientation="portrait">
         </activity>
     </application>

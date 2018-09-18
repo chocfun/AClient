@@ -118,6 +118,14 @@ public class XLog implements BaseLogStrategy {
 
 
     private void getMethodInfo(StackTraceElement sElements) {
+        if (null == sElements) {
+            mFileName = "";
+            mClassName = "";
+            mMethodName = "";
+            mLineNumber = 0;
+
+            return;
+        }
         mFileName = sElements.getFileName();
         mClassName = sElements.getClassName();
         mMethodName = sElements.getMethodName();

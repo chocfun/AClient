@@ -48,9 +48,9 @@ public class MainActivity extends BaseActivity {
         start(AspectJActivity.class);
     }
 
-    @OnClick(R.id.test_btn)
+    @OnClick(R.id.leak_canary_btn)
     public void test() {
-        start(TestActivity.class);
+        start(LeakCanaryActivity.class);
     }
 
 

@@ -23,7 +23,8 @@ public class LogActivity extends BaseActivity {
     public void initData(@Nullable Bundle savedInstanceState) {
         mEditText.setText("测试日志打印");
 
-        LogHelper.t("测试TAG").i("测试；啊交水电费");
+        LogHelper.t("测试TAG");
+        LogHelper.i("测试；啊交水电费");
     }
 
     @OnClick(R.id.v_btn)
@@ -49,5 +50,11 @@ public class LogActivity extends BaseActivity {
     @OnClick(R.id.e_btn)
     public void e() {
         LogHelper.e(mEditText.getText().toString());
+    }
+
+    @OnClick(R.id.t_btn)
+    public void tag() {
+        LogHelper.t("我的TAG");
+        LogHelper.i(mEditText.getText().toString());
     }
 }

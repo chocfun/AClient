@@ -50,4 +50,6 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies.libDagger2Compiler
 
     implementation rootProject.ext.dependencies.libAspectJrt
+
+    debugImplementation rootProject.ext.dependencies.libLeakCanaryDebut
 }

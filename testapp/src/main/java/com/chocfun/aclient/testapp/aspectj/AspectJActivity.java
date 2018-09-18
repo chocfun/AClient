@@ -59,7 +59,7 @@ public class AspectJActivity extends BaseActivity {
     private int mIndex = 0;
     @OnClick(R.id.d_async_btn)
     public void dAsync() {
-        Observable<Integer> observable = Observable.create(new ObservableOnSubscribe<Integer>() {
+        Observable.create(new ObservableOnSubscribe<Integer>() {
             @Override
             public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
                 for (int i = 0; i < 10; i++) {
@@ -75,13 +75,12 @@ public class AspectJActivity extends BaseActivity {
         })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .onTerminateDetach();
-        observable.onTerminateDetach()
                 .subscribe(new Observer<Integer>() {
             @Override
             public void onSubscribe(Disposable d) {
                 LogHelper.i("onSubscribe : " + d.toString());
                 if (null != mDisposables && !mDisposables.isDisposed()) {
+                    LogHelper.i("=============================");
                     mDisposables.add(d);
                 }
             }

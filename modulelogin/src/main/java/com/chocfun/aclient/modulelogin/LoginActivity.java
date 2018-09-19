@@ -34,6 +34,8 @@ public class LoginActivity extends BaseActivity {
         mRouterPath = getIntent().getStringExtra("routerPath");
         mRouterBundle = getIntent().getBundleExtra("routerBundle");
 
+        LogHelper.i("" + mRouterPath + " " + mRouterBundle.toString());
+
         mToolbar.setNavigationOnClickListener(v -> finish());
     }
 
@@ -54,6 +56,11 @@ public class LoginActivity extends BaseActivity {
 
     @OnClick(R2.id.login_failed_btn)
     public void loginFailed() {
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
         finish();
     }
 }

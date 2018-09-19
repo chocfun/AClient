@@ -39,25 +39,26 @@ public final class RouterHelper {
                 });
     }
 
-    public static Fragment getFragmentA() {
+    public static Fragment getFragmentA(Context context) {
         return (Fragment) ARouter.getInstance()
                 .build(ModuleARouterPath.FramgentA)
-                .navigation();
+                .navigation(context);
     }
 
-    public static void startModuleBActivity(int p1, String p2) {
+    public static void startModuleBActivity(Context context, int p1, String p2) {
         ARouter.getInstance()
                 .build(ModuleBRouterPath.ModuleBActivity)
                 .withInt("p1", p1)
                 .withString("p2", p2)
-                .navigation();
+                .navigation(context);
     }
 
-    public static void startLogin(String path, Bundle bundle) {
+    public static void startLogin(Context context, String path, Bundle bundle) {
+        LogHelper.i("startLogin : " + path + " " + bundle.toString());
         ARouter.getInstance()
                 .build(LoginRouterPath.LoginActivity)
                 .withString("routerPath", path)
                 .withBundle("routerBundle", bundle)
-                .navigation();
+                .navigation(context);
     }
 }

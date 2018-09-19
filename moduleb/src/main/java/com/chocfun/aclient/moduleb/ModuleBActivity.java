@@ -5,9 +5,11 @@ import android.support.annotation.Nullable;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.chocfun.aclient.commonservice.constants.Constant;
 import com.chocfun.aclient.commonservice.eventbus.moduleb.ModuleBMessage;
 import com.chocfun.aclient.commonservice.router.RouterHelper;
 import com.chocfun.aclient.commonservice.router.routerpath.ModuleBRouterPath;
+import com.chocfun.baselib.app.AppManager;
 import com.chocfun.baselib.aspect.singleclick.SingleClick;
 import com.chocfun.baselib.eventbus.EventBusMessage;
 import com.chocfun.baselib.eventbus.EventBusUtil;
@@ -17,7 +19,7 @@ import com.chocfun.baselib.ui.BaseActivity;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-@Route(path = ModuleBRouterPath.ModuleBActivity)
+@Route(path = ModuleBRouterPath.ModuleBActivity, extras = Constant.LOGIN_NEED)
 public class ModuleBActivity extends BaseActivity {
 
 
@@ -45,6 +47,11 @@ public class ModuleBActivity extends BaseActivity {
     @OnClick(R2.id.fragment_a_btn)
     public void startFragmentA() {
         FragmentAActivity.start(this);
+    }
+
+    @OnClick(R2.id.print_activitys_btn)
+    public void print() {
+        AppManager.getInstance().printInfo();
     }
 
 

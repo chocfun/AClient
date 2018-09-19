@@ -13,7 +13,7 @@
 
         <meta-data
             android:value="ConfigModule"
-            android:name="com.chocfun.aclient.commonservice.app.CommonConfig"/>
+            android:name="com.chocfun.aclient.commonservice.app.CommonServiceConfig"/>
 
         <activity android:name=".MainActivity">
             <intent-filter>

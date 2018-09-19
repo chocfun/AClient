@@ -4,6 +4,7 @@ import android.support.annotation.Nullable;
 import android.os.Bundle;
 
 import com.chocfun.aclient.commonservice.router.RouterHelper;
+import com.chocfun.baselib.app.AppManager;
 import com.chocfun.baselib.eventbus.EventBusMessage;
 import com.chocfun.baselib.log.LogHelper;
 import com.chocfun.baselib.ui.BaseActivity;
@@ -30,7 +31,12 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.open_module_b_btn)
     public void openModuleB() {
-        RouterHelper.startModuleBActivity(100, "MainActivity");
+        RouterHelper.startModuleBActivity(this, 100, "MainActivity");
+    }
+
+    @OnClick(R.id.print_activitys_btn)
+    public void print() {
+        AppManager.getInstance().printInfo();
     }
 
     private void initRouter() {

@@ -7,6 +7,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.chocfun.aclient.commonservice.eventbus.modulea.ModuleAMessage;
 import com.chocfun.aclient.commonservice.router.RouterHelper;
 import com.chocfun.aclient.commonservice.router.routerpath.ModuleARouterPath;
+import com.chocfun.baselib.app.AppManager;
 import com.chocfun.baselib.aspect.singleclick.SingleClick;
 import com.chocfun.baselib.eventbus.EventBusMessage;
 import com.chocfun.baselib.eventbus.EventBusUtil;
@@ -21,7 +22,7 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R2.id.open_module_b_btn)
     public void openModuleB() {
-        RouterHelper.startModuleBActivity(200, "ModuleAActivity");
+        RouterHelper.startModuleBActivity(this, 200, "ModuleAActivity");
     }
 
     @Override
@@ -53,6 +54,11 @@ public class MainActivity extends BaseActivity {
         ModuleAMessage message = new ModuleAMessage(ModuleAMessage.MESSAGE_A_2);
         message.put("name", "模块A消息2" + getClass().getSimpleName());
         EventBusUtil.post(message);
+    }
+
+    @OnClick(R2.id.print_activitys_btn)
+    public void print() {
+        AppManager.getInstance().printInfo();
     }
 
     @Override

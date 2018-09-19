@@ -24,7 +24,7 @@ public class FragmentAActivity extends BaseActivity {
     public void initData(@Nullable Bundle savedInstanceState) {
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.content_layout, RouterHelper.getFragmentA())
+                .add(R.id.content_layout, RouterHelper.getFragmentA(this))
                 .commit();
     }
 }

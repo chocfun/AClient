@@ -31,6 +31,19 @@ public class AppManager {
     }
 
     /**
+     * 打印信息
+     */
+    public void printInfo() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("共有 " + mActivityList.size() + " 个Activity\n");
+        for (Activity activity : mActivityList) {
+            builder.append(activity.getClass().toString());
+            builder.append("\n");
+        }
+        LogHelper.i(builder.toString());
+    }
+
+    /**
      * 返回一个存储的{@link Activity} 的集合
      */
     public List<Activity> getActivityList() {

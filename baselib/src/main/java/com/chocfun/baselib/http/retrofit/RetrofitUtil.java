@@ -26,6 +26,14 @@ public class RetrofitUtil {
         if (! mRetrofits.containsKey(key)) {
             mRetrofits.put(key, factory.provideRetrofit());
         } else {
+            throw new IllegalArgumentException(key + " 已经存在");
         }
+    }
+
+    public Retrofit get(String key) {
+        if (!mRetrofits.containsKey(key) || (null == mRetrofits.get(key))) {
+            throw new IllegalArgumentException(key + " 不存在");
+        }
+        return mRetrofits.get(key);
     }
 }

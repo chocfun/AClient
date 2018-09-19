@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.hujiang.android-aspectjx'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion rootProject.ext.compileSdkVersion
 
     compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
@@ -12,8 +12,8 @@ android {
 
     defaultConfig {
         applicationId "com.chocfun.aclient.testapp"
-        minSdkVersion 19
-        targetSdkVersion 27
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
 

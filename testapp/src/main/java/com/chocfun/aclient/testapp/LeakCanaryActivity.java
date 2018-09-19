@@ -13,7 +13,7 @@ public class LeakCanaryActivity extends Activity {
         leakThread.start();
     }
 
-    class LeakThread extends Thread {
+    static class LeakThread extends Thread {
         @Override
         public void run() {
             try {

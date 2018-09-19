@@ -2,11 +2,9 @@ package com.chocfun.baselib.mvp;
 
 import android.support.annotation.NonNull;
 
-import com.chocfun.baselib.app.IAppLifecycle;
 import com.chocfun.baselib.eventbus.EventBusMessage;
 import com.chocfun.baselib.eventbus.EventBusUtil;
 import com.chocfun.baselib.eventbus.IEventBus;
-import com.chocfun.baselib.log.LogHelper;
 import com.chocfun.baselib.rxlifecycle.IRxLifecycle;
 import com.chocfun.baselib.rxlifecycle.RxLifecycleEvent;
 import com.chocfun.baselib.rxlifecycle.RxLifecycleUtil;
@@ -29,14 +27,10 @@ public abstract class BaseMVPPresenter<V extends IBaseView> implements IBasePres
         PreconditionUtil.assertNotNull(view, IBaseView.class.getName() + " can no be null!");
 
         this.mView = view;
-
-        attach();
     }
 
     @Override
     public void attach() {
-//        LogHelper.i(this.getClass().getSimpleName() + " attach()");
-
         // 注册EventBus
         if (useEventBus()) {
             EventBusUtil.register(this);

@@ -5,16 +5,18 @@ import retrofit2.Retrofit;
 
 public class SimpleRetrofitFactory implements IRetrofitFactory {
 
-    @Override
-    public OkHttpClient provideOkHttpClient() {
+    private OkHttpClient provideOkHttpClient() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
-
 
         return builder.build();
     }
 
     @Override
     public Retrofit provideRetrofit() {
-        return null;
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl("");
+        builder.client(provideOkHttpClient());
+
+        return builder.build();
     }
 }

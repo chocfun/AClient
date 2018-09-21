@@ -22,12 +22,14 @@ public class RetrofitUtil {
         return SingletonHolder.instance;
     }
 
-    public void add(String key, IRetrofitFactory factory) {
+    public Retrofit add(String key, IRetrofitFactory factory) {
         if (! mRetrofits.containsKey(key)) {
             mRetrofits.put(key, factory.provideRetrofit());
         } else {
             throw new IllegalArgumentException(key + " 已经存在");
         }
+
+        return mRetrofits.get(key);
     }
 
     public Retrofit get(String key) {

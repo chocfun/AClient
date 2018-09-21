@@ -39,7 +39,6 @@ public class RxLifecycleUtil {
         return new ObservableTransformer<T, T>() {
             @Override
             public ObservableSource<T> apply(Observable<T> upstream) {
-                LogHelper.w("apply : " + upstream.toString());
                 return upstream.takeUntil(filter);
             }
         };

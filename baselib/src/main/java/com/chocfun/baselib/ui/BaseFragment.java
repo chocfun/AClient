@@ -1,5 +1,6 @@
 package com.chocfun.baselib.ui;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,6 +16,8 @@ import com.chocfun.baselib.eventbus.IEventBus;
 import com.chocfun.baselib.rxlifecycle.IRxLifecycle;
 import com.chocfun.baselib.rxlifecycle.RxLifecycleEvent;
 import com.chocfun.baselib.rxlifecycle.RxLifecycleUtil;
+import com.chocfun.baselib.toast.IToastConfig;
+import com.chocfun.baselib.toast.ToastHelper;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -28,7 +31,7 @@ import io.reactivex.subjects.BehaviorSubject;
  * 封装Fragment基类
  *
  */
-public abstract class BaseFragment extends Fragment implements IBaseFragment, IRxLifecycle, IEventBus {
+public abstract class BaseFragment extends Fragment implements IBaseFragment, IBaseView, IEventBus {
 
     // ButterKnife解除绑定
     private Unbinder mUnbinder;
@@ -143,6 +146,37 @@ public abstract class BaseFragment extends Fragment implements IBaseFragment, IR
     }
 
     @Override
+    public Context getBaseViewContext() {
+        return getContext();
+    }
+
+    @Override
+    public Activity getBaseViewActivity() {
+        return getActivity();
+    }
+
+
+    @Override
+    public void toastLong(String msg) {
+        ToastHelper.getInstance().toastLong(msg);
+    }
+
+    @Override
+    public void toastLong(IToastConfig config) {
+        ToastHelper.getInstance().toastLong(config);
+    }
+
+    @Override
+    public void toastShort(String msg) {
+        ToastHelper.getInstance().toastShort(msg);
+    }
+
+    @Override
+    public void toastShort(IToastConfig config) {
+        ToastHelper.getInstance().toastShort(config);
+    }
+
+    @Override
     public boolean useEventBus() {
         return false;
     }
@@ -150,5 +184,19 @@ public abstract class BaseFragment extends Fragment implements IBaseFragment, IR
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventBusMessage(EventBusMessage message) {
 
+    }
+
+    @Override
+    public void showLoading() {
+        if (getActivity() instanceof IBaseView) {
+            ((IBaseView)getActivity()).showLoading();
+        }
+    }
+
+    @Override
+    public void hideLoading() {
+        if (getActivity() instanceof IBaseView) {
+            ((IBaseView)getActivity()).hideLoading();
+        }
     }
 }

@@ -6,8 +6,12 @@ import android.support.annotation.NonNull;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.chocfun.aclient.testapp.BuildConfig;
+import com.chocfun.aclient.testapp.http.TestServiceHelper;
 import com.chocfun.baselib.app.IAppLifecycle;
 import com.chocfun.baselib.log.LogHelper;
+import com.chocfun.baselib.toast.ToastHelper;
+import com.chocfun.baselib.widget.dialog.DialogLoading;
+import com.chocfun.baselib.widget.dialog.DialogLoadingHelper;
 import com.squareup.leakcanary.LeakCanary;
 
 import butterknife.ButterKnife;
@@ -34,6 +38,12 @@ public class AppLifecycleImpl implements IAppLifecycle {
         ARouter.init(application); // 尽可能早，推荐在Application中初始化
         LogHelper.init("TestApp");
         LogHelper.i("TestApp 的初始化工作");
+        // 初始化Retrofit
+        TestServiceHelper.getInstance().init();
+        // 初始化 Toast
+        ToastHelper.getInstance().init(application.getApplicationContext());
+        // 初始化 LoadingDialog
+        DialogLoadingHelper.getInstance().setStrategy(new DialogLoading());
     }
 
     @Override

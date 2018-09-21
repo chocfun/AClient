@@ -7,8 +7,6 @@ import android.support.annotation.Nullable;
 import com.orhanobut.logger.Logger;
 
 public class LogUtil {
-
-
     private BaseLogStrategy mStrategy;
 
     private LogUtil() {

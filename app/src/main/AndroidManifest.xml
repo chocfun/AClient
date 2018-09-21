@@ -11,10 +11,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
-        <meta-data
-            android:value="ConfigModule"
-            android:name="com.chocfun.aclient.commonservice.app.CommonServiceConfig"/>
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

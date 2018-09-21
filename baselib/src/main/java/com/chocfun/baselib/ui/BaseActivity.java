@@ -1,5 +1,7 @@
 package com.chocfun.baselib.ui;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +13,9 @@ import com.chocfun.baselib.eventbus.IEventBus;
 import com.chocfun.baselib.rxlifecycle.IRxLifecycle;
 import com.chocfun.baselib.rxlifecycle.RxLifecycleEvent;
 import com.chocfun.baselib.rxlifecycle.RxLifecycleUtil;
+import com.chocfun.baselib.toast.IToastConfig;
+import com.chocfun.baselib.toast.ToastHelper;
+import com.chocfun.baselib.widget.dialog.DialogLoadingHelper;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -24,7 +29,7 @@ import io.reactivex.subjects.BehaviorSubject;
  * 封装Activity基类
  *
  */
-public abstract class BaseActivity extends AppCompatActivity implements IBaseActivity ,IBaseView, IRxLifecycle, IEventBus {
+public abstract class BaseActivity extends AppCompatActivity implements IBaseActivity ,IBaseView, IEventBus {
 
     // ButterKnife解除绑定
     private Unbinder mUnbinder;
@@ -135,6 +140,36 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
     }
 
     @Override
+    public Context getBaseViewContext() {
+        return this;
+    }
+
+    @Override
+    public Activity getBaseViewActivity() {
+        return this;
+    }
+
+    @Override
+    public void toastLong(String msg) {
+        ToastHelper.getInstance().toastLong(msg);
+    }
+
+    @Override
+    public void toastLong(IToastConfig config) {
+        ToastHelper.getInstance().toastLong(config);
+    }
+
+    @Override
+    public void toastShort(String msg) {
+        ToastHelper.getInstance().toastShort(msg);
+    }
+
+    @Override
+    public void toastShort(IToastConfig config) {
+        ToastHelper.getInstance().toastShort(config);
+    }
+
+    @Override
     public boolean useEventBus() {
         return false;
     }
@@ -142,5 +177,15 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventBusMessage(EventBusMessage message) {
 
+    }
+
+    @Override
+    public void showLoading() {
+        DialogLoadingHelper.getInstance().showLoading(getSupportFragmentManager());
+    }
+
+    @Override
+    public void hideLoading() {
+        DialogLoadingHelper.getInstance().hideLoading();
     }
 }

@@ -9,8 +9,12 @@ import com.chocfun.aclient.testapp.R;
 import com.chocfun.baselib.log.LogHelper;
 import com.chocfun.baselib.mvp.BaseMVPFragment;
 
+import java.util.concurrent.TimeUnit;
+
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 
 public class MVPLogFragment extends BaseMVPFragment<LogContracts.Presenter> implements LogContracts.View {
     public final static String TAG = MVPLogFragment.class.getSimpleName();
@@ -53,6 +57,22 @@ public class MVPLogFragment extends BaseMVPFragment<LogContracts.Presenter> impl
     @OnClick(R.id.fragment_lifecycle_btn)
     public void gotoFragmentLifecycleTest() {
         MVPLogActivity.start(getActivity());
+    }
+
+    @SuppressWarnings("CheckResult")
+    @OnClick(R.id.show_loading_btn)
+    public void doShowLoading() {
+        showLoading();
+
+        Observable.timer(5, TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aLong -> hideLoading());
+    }
+
+    @OnClick(R.id.toast_btn)
+    public void doToast() {
+        toastShort("吐司");
     }
 
     @Override

@@ -1,2 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.chocfun.aclient.commonservice" />
+    package="com.chocfun.aclient.commonservice" >
+    <application>
+        <meta-data
+            android:value="ConfigModule"
+            android:name="com.chocfun.aclient.commonservice.app.CommonServiceConfig"/>
+    </application>
+</manifest>
